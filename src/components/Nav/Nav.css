@@ -28,19 +28,29 @@ header {
 
 @media (max-width: 899px) {
 
-    @keyframes down-bar {
-        0% { transform: rotate(0) }
-        100% { transform: translateX(-17px) translateY(7px) rotate(-45deg); }
+    .upper-bar-active{
+        transform: translateX(10px) translateY(0px) rotate(45deg);
+        transition: transform 1s;
     }
 
-    @keyframes middle-bar {
-        0% { fill: #a1a1a1 }
-        100% { fill: rgba(255, 255, 255, 0)}
+    .middle-bar-active{
+        fill: rgba(255, 255, 255, 0);
+        transition: fill 1s;
     }
 
-    @keyframes upper-bar {
-        0% { transform: rotate(0) }
-        100% {  transform: translateX(10px) translateY(0px) rotate(45deg); }
+    .down-bar-active{
+        transform: translateX(-17px) translateY(7px) rotate(-45deg);
+        transition: transform 1s;
+    }
+
+    .upper-or-down-bar-inactive{
+        transform: rotate(0) translateY(0) translateX(0);
+        transition: transform 1s;
+    }
+
+    .middle-bar-inactive{
+        fill: #a1a1a1;
+        transition: fill 1s;
     }
 
     .mobile-menu{
@@ -65,18 +75,6 @@ header {
         display: block;
         margin: 17px auto 17px auto;
 
-    }
-
-    .animation-down-bar{
-        animation: down-bar 1s forwards;
-    }
-
-    .animation-middle-bar{
-        animation: middle-bar 1s forwards;
-    }
-
-    .animation-upper-bar{
-        animation: upper-bar 1s forwards;
     }
 
     .main-menu{

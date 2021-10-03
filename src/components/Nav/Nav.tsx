@@ -42,9 +42,9 @@ const Nav = () => {
         <>
             <div className="mobile-menu" onClick={handleSetShowMobileMenu}>
                 <svg width="40" height="36">
-                    <rect y="0" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'animation-upper-bar' : ''}  />
-                    <rect y="15" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'animation-middle-bar' : ''} />
-                    <rect y="30" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'animation-down-bar' : ''} />
+                    <rect y="0" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'upper-bar-active' : 'upper-or-down-bar-inactive'}  />
+                    <rect y="15" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'middle-bar-active' : 'middle-bar-inactive'} />
+                    <rect y="30" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'down-bar-active' : 'upper-or-down-bar-inactive'} />
                 </svg>
             </div>
             <header>
