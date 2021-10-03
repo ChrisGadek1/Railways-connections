@@ -1,3 +1,8 @@
+.menu-link{
+    text-decoration: none;
+    color: wheat;
+}
+
 @media (min-width: 900px) {
     .menu-element:hover{
         box-shadow: 0 0 1px 1px #000;
@@ -11,8 +16,27 @@
     }
 
     .menu-link{
-        text-decoration: none;
         padding: 10px 30px 10px 30px;
-        color: wheat;
     }
+}
+
+@media (max-width: 899px) {
+    .menu-element{
+        text-align: center;
+        padding: 20px 50px 20px 50px;
+        background-color: #a1a1a1;
+    }
+
+    .apply-animation{
+        animation: move-menu-mobile 0.25s forwards;
+    }
+
+    .menu-link{
+        padding: 20px 50px 20px 50px;
+    }
+}
+
+@keyframes move-menu-mobile {
+    0% { right: -100%; }
+    100% { right: 0; }
 }
