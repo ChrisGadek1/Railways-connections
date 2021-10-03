@@ -1,0 +1,23 @@
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #a1a1a1;
+}
+
+.main-menu{
+    display: flex;
+}
+
+@media (min-width: 900px) {
+
+    header {
+        box-shadow: 0 0 8px 2px #000;
+    }
+
+    .main-menu{
+        top: 0;
+        justify-content: center;
+        flex-direction: row;
+        list-style: none;
+    }
+}
