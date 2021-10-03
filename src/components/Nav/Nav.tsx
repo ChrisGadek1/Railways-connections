@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {BrowserRouter} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
+import { showAnimation, hideAnimation } from "../../actions/mobileAnimationActions";
 import NavButton from "../NavButton/NavButton";
 import './Nav.css'
+
 
 const options = [
     {name: 'Strona Główna', url: '/'},
@@ -14,6 +17,7 @@ const options = [
 const Nav = () => {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const dispatch = useDispatch();
 
     const buttons = options.map((option, id: number) =>
         <NavButton
@@ -23,7 +27,16 @@ const Nav = () => {
             url={option.url}
         />)
 
-    const handleSetShowMobileMenu = () => setShowMobileMenu(prev => !prev)
+    const handleSetShowMobileMenu = () => {
+        if(showMobileMenu){
+            dispatch(hideAnimation())
+            setShowMobileMenu(false)
+        }
+        else{
+            dispatch(showAnimation())
+            setShowMobileMenu(true)
+        }
+    }
 
     return (
         <>

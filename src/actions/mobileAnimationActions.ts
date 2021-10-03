@@ -1,12 +1,12 @@
 export const SHOW: string = 'SHOW'
 export const HIDE: string = 'HIDE'
 
-const showAnimation = () => ({
+export const showAnimation = () => ({
     type: SHOW,
     payload: {}
 })
 
-const hideAnimation = () => ({
+export const hideAnimation = () => ({
     type: HIDE,
     payload: {}
 })

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import './NavButton.css'
+import {useSelector} from "react-redux";
+import {RootState} from "../../reducers/rootReducer";
 
 type propsType = {
     name: string,
@@ -10,6 +12,8 @@ type propsType = {
 }
 
 const NavButton = ({ name, url, id } : propsType) => {
+
+    const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 
     const style = {
         top: `${id*20}px`,
