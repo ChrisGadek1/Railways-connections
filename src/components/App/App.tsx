@@ -8,7 +8,7 @@ import Nav from "../Nav/Nav";
 function App() {
   return (
       <Provider store={store}>
-        <div className="App">
+        <div className="App" data-testid="app">
           <Nav />
         </div>
       </Provider>
