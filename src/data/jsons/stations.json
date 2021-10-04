@@ -1,0 +1,228 @@
+{
+  "stations": [
+    {
+      "id": 1,
+      "name": "Kosmolów Zachód",
+      "location": {
+        "lat": 50.271927,
+        "lon": 19.641621
+      }
+    },
+    {
+      "id": 2,
+      "name": "Kosmolów Wschód",
+      "location": {
+        "lat": 50.270547,
+        "lon": 19.670348
+      }
+    },
+    {
+      "id": 3,
+      "name": "Sieniczno",
+      "location": {
+        "lat": 50.265944,
+        "lon": 19.617168
+      }
+    },
+    {
+      "id": 4,
+      "name": "Kogutek",
+      "location": {
+        "lat": 50.255821,
+        "lon": 19.640459
+      }
+    },
+    {
+      "id": 5,
+      "name": "Osiek Północny",
+      "location": {
+        "lat": 50.257743,
+        "lon": 19.597808
+      }
+    },
+    {
+      "id": 6,
+      "name": "Osiek Centralny",
+      "location": {
+        "lat": 50.243438,
+        "lon": 19.600122
+      }
+    },
+    {
+      "id": 7,
+      "name": "Osiek Południe",
+      "location": {
+        "lat": 50.222851,
+        "lon": 19.603449
+      }
+    },
+    {
+      "id": 8,
+      "name": "Witeradów",
+      "location": {
+        "lat": 50.249822,
+        "lon": 19.576426
+      }
+    },
+    {
+      "id": 9,
+      "name": "Żurada",
+      "location": {
+        "lat": 50.252728,
+        "lon": 19.544005
+      }
+    },
+    {
+      "id": 10,
+      "name": "Zimnodół",
+      "location": {
+        "lat": 50.246969,
+        "lon": 19.618231
+      }
+    },
+    {
+      "id": 11,
+      "name": "Zederman Centralny",
+      "location": {
+        "lat": 50.247090,
+        "lon": 19.669483
+      }
+    },
+    {
+      "id": 12,
+      "name": "Zederman Zachodni",
+      "location": {
+        "lat": 50.247726,
+        "lon": 19.648192
+      }
+    },
+    {
+      "id": 13,
+      "name": "Zadole Kosmolowskie",
+      "location": {
+        "lat": 50.258650,
+        "lon": 19.680853
+      }
+    },
+    {
+      "id": 14,
+      "name": "Olewin",
+      "location": {
+        "lat": 50.281215,
+        "lon": 19.606415
+      }
+    },
+    {
+      "id": 15,
+      "name": "Rabsztyn",
+      "location": {
+        "lat": 50.299078,
+        "lon": 19.596835
+      }
+    },
+    {
+      "id": 16,
+      "name": "Olkusz Centralny",
+      "location": {
+        "lat": 50.280267,
+        "lon": 19.566303
+      }
+    },
+    {
+      "id": 17,
+      "name": "Olkusz Os. Młodych",
+      "location": {
+        "lat": 50.262549,
+        "lon": 19.565305
+      }
+    },
+    {
+      "id": 18,
+      "name": "Olkusz Pomorzany",
+      "location": {
+        "lat": 50.289637,
+        "lon": 19.541101
+      }
+    },
+    {
+      "id": 19,
+      "name": "Troks",
+      "location": {
+        "lat": 50.302446,
+        "lon": 19.645707
+      }
+    },
+    {
+      "id": 20,
+      "name": "Przeginia",
+      "location": {
+        "lat": 50.237384,
+        "lon": 19.689100
+      }
+    },
+    {
+      "id": 21,
+      "name": "Bogucin Mały",
+      "location": {
+        "lat": 50.308086,
+        "lon": 19.576767
+      }
+    },
+    {
+      "id": 22,
+      "name": "Braciejówka",
+      "location": {
+        "lat": 50.307453,
+        "lon": 19.667042
+      }
+    },
+    {
+      "id": 23,
+      "name": "Zawada",
+      "location": {
+        "lat": 50.221829,
+        "lon": 19.641908
+      }
+    },
+    {
+      "id": 24,
+      "name": "Gorenice Wschód",
+      "location": {
+        "lat": 50.206107,
+        "lon": 19.629218
+      }
+    },
+    {
+      "id": 25,
+      "name": "Gorenice Zachód",
+      "location": {
+        "lat": 50.208021,
+        "lon": 19.605437
+      }
+    },
+    {
+      "id": 26,
+      "name": "Bogucin Wielki",
+      "location": {
+        "lat": 50.325470,
+        "lon": 19.585317
+      }
+    },
+    {
+      "id": 27,
+      "name": "Jaroszowiec",
+      "location": {
+        "lat": 50.336516,
+        "lon": 19.601646
+      }
+    },
+    {
+      "id": 28,
+      "name": "Podlesie",
+      "location": {
+        "lat": 50.325642,
+        "lon": 19.648762
+      }
+    }
+  ]
+}
