@@ -4,12 +4,17 @@ import { store } from "../../store/store";
 
 import './App.css';
 import Nav from "../Nav/Nav";
+import Content from "../Content/Content";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
       <Provider store={store}>
         <div className="App" data-testid="app">
-          <Nav />
+            <BrowserRouter>
+                <Nav />
+                <Content/>
+            </BrowserRouter>
         </div>
       </Provider>
 
