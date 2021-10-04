@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
-import {BrowserRouter} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
 import { showAnimation, hideAnimation } from "../../actions/mobileAnimationActions";
 import NavButton from "../NavButton/NavButton";
 import './Nav.css'
 
-
 const options = [
     {name: 'Strona Główna', url: '/'},
     {name: 'Przystanki', url: '/przystanki'},
     {name: 'Linie', url: '/linie'},
-    {name: 'Znajdź trasę', url: 'znajdz-trase'}
+    {name: 'Znajdź trasę', url: '/znajdz-trase'}
 ]
 
 const Nav = () => {
@@ -48,13 +46,11 @@ const Nav = () => {
                 </svg>
             </div>
             <header>
-                <BrowserRouter>
-                    <nav>
-                        <ul className="main-menu">
-                            {buttons}
-                        </ul>
-                    </nav>
-                </BrowserRouter>
+                <nav>
+                    <ul className="main-menu">
+                        {buttons}
+                    </ul>
+                </nav>
             </header>
         </>
 

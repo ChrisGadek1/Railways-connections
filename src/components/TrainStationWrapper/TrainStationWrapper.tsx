@@ -2,7 +2,7 @@ import React from "react";
 
 const TrainStationWrapper = () => {
     return(
-        <div>
+        <div data-testid="train-station-wrapper">
 
         </div>
     )

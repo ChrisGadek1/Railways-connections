@@ -2,7 +2,7 @@ import React from "react";
 
 const TrainChoosingWrapper = () => {
     return(
-        <div>
+        <div data-testid="train-choosing-wrapper">
 
         </div>
     )

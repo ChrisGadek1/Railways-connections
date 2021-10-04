@@ -2,7 +2,7 @@ import React from "react";
 
 const ConnectionChoosingWrapper = () => {
     return(
-        <div>
+        <div data-testid="connection-choosing-wrapper">
 
         </div>
     )
