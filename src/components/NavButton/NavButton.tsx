@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from "react-router-dom";
 
 import './NavButton.css'
@@ -12,6 +12,11 @@ type propsType = {
 }
 
 const NavButton = ({ name, url, id } : propsType) => {
+
+    useEffect(() => {
+
+
+    }, [])
 
     const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 

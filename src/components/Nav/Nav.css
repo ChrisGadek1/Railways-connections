@@ -12,6 +12,10 @@ header {
 
 @media (min-width: 900px) {
 
+    header {
+        z-index: 1000;
+    }
+
     .mobile-menu{
         display: none;
     }
@@ -37,6 +41,7 @@ header {
     .middle-bar-active{
         fill: rgba(255, 255, 255, 0);
         transition: fill 1s;
+        z-index: 1000;
     }
 
     .down-bar-active{
@@ -54,12 +59,21 @@ header {
         transition: fill 1s;
     }
 
+    .big-z-index{
+        z-index: 1000;
+    }
+
+    .low-z-index{
+        z-index: 0;
+        transition-delay: 1s;
+    }
+
     .mobile-menu{
+        z-index: 1000;
         display: block;
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
-        z-index: 100;
         width: 70px;
         height: 70px;
         border-radius: 35px;

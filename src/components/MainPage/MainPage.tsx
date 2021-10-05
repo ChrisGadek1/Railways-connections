@@ -1,5 +1,6 @@
 import React from "react";
 import './MainPage.css'
+import MainPageMap from "../MainPageMap/MainPageMap";
 
 const MainPage = () => {
     return(
@@ -11,6 +12,7 @@ const MainPage = () => {
                     jak również wyszukiwania tras pomiędzy przystankami
                 </p>
             </section>
+            <MainPageMap />
         </main>
     )
 }

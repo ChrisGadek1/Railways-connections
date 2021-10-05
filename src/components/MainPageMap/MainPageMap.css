@@ -1,0 +1,17 @@
+@media (min-width: 900px) {
+    #mapid{
+        width: 80%;
+        max-height: 60vh;
+    }
+}
+
+@media(max-width: 899px){
+    #mapid{
+        width: 95%;
+    }
+}
+
+#mapid{
+    margin: 20px auto 20px auto;
+}
+

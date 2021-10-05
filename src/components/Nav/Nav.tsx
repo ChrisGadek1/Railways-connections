@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 
 import { showAnimation, hideAnimation } from "../../actions/mobileAnimationActions";
@@ -45,7 +45,7 @@ const Nav = () => {
                     <rect y="30" width="40" height="6" fill="#a1a1a1" className={showMobileMenu ? 'down-bar-active' : 'upper-or-down-bar-inactive'} />
                 </svg>
             </div>
-            <header>
+            <header className={showMobileMenu ? "big-z-index" : "low-z-index"}>
                 <nav>
                     <ul className="main-menu">
                         {buttons}
