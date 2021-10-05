@@ -1,0 +1,26 @@
+.main-page-title{
+    text-align: center;
+}
+
+.main-page section{
+    padding: 10px;
+    border-bottom: 1px solid #000;
+    margin: auto;
+}
+
+@media (max-width: 899px) {
+    .main-page section{
+        width: 90%;
+    }
+}
+
+@media (min-width: 900px) {
+    .main-page section{
+        width: 80%;
+    }
+}
+
+.main-page section p{
+    text-align: center;
+    margin: 0 10px 0 10px;
+}
