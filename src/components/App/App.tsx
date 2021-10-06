@@ -1,5 +1,5 @@
-import React from 'react';
-import { Provider } from 'react-redux'
+import React, {useEffect} from 'react';
+import {Provider, useDispatch} from 'react-redux'
 import { store } from "../../store/store";
 
 import './App.css';
@@ -8,15 +8,16 @@ import Content from "../Content/Content";
 import {BrowserRouter} from "react-router-dom";
 
 function App() {
-  return (
-      <Provider store={store}>
-        <div className="App" data-testid="app">
-            <BrowserRouter>
-                <Nav />
-                <Content/>
-            </BrowserRouter>
-        </div>
-      </Provider>
+
+    return (
+        <Provider store={store}>
+            <div className="App" data-testid="app">
+                <BrowserRouter>
+                    <Nav/>
+                    <Content/>
+                </BrowserRouter>
+            </div>
+        </Provider>
 
   );
 }

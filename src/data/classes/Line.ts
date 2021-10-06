@@ -3,7 +3,7 @@ import WeekDate from "./WeekDate";
 
 export default class Line{
 
-    constructor(name: string, stations: Station[], begin: string, end: string, time: WeekDate[]) {
+    constructor(name: string, stations: Station[], begin: Station, end: Station, time: WeekDate[]) {
         this._name = name;
         this._stations = stations;
         this._begin = begin;
@@ -20,11 +20,11 @@ export default class Line{
         return this._stations;
     }
 
-    get begin(): string {
+    get begin(): Station {
         return this._begin;
     }
 
-    get end(): string {
+    get end(): Station {
         return this._end;
     }
 
@@ -34,8 +34,8 @@ export default class Line{
 
     private readonly _name: string;
     private readonly _stations: Station[];
-    private readonly _begin: string;
-    private readonly _end: string;
+    private readonly _begin: Station;
+    private readonly _end: Station;
     private readonly _time: WeekDate[];
 
 }

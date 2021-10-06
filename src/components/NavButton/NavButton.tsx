@@ -16,7 +16,7 @@ const NavButton = ({ name, url, id } : propsType) => {
     const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 
     return (
-        <li className={mobileAnimation ? "menu-element active-menu" : "menu-element hidden-menu"}
+        <li className={mobileAnimation.mobileAnimation ? "menu-element active-menu" : "menu-element hidden-menu"}
             id={"menu-element-"+id}
         >
             <Link className="menu-link" to={url}>{name}</Link>

@@ -36,4 +36,25 @@ export default class WeekDateConverter{
         return new WeekDate(day, hours, minutes)
     }
 
+    convertToSeconds(weekDate: WeekDate){
+        switch (weekDate.weekDay){
+            case Day.MONDAY:
+                return 86400*0 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.TUESDAY:
+                return 86400*1 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.WEDNESDAY:
+                return 86400*2 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.THURSDAY:
+                return 86400*3 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.FRIDAY:
+                return 86400*4 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.SATURDAY:
+                return 86400*5 + weekDate.hours * 3600 + weekDate.minutes * 60
+            case Day.SUNDAY:
+                return 86400*6 + weekDate.hours * 3600 + weekDate.minutes * 60
+            default:
+                return -1
+        }
+    }
+
 }
