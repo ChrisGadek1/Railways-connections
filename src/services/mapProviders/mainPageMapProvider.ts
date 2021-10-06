@@ -1,13 +1,20 @@
-import L, {LatLngExpression} from 'leaflet'
+import L, {Control, LatLngExpression, Polyline} from 'leaflet'
 import $ from "jquery";
 import Station from "../../data/classes/Station";
 import Line from "../../data/classes/Line";
+import {addFunctionsToLegend, makeLegendDropDown} from "./helpers";
+
+type linePolyLine = {
+    lineName: string,
+    polyLine: Polyline
+}
 
 export default class MainPageMapProvider{
     private static instance: MainPageMapProvider;
     private static isLayerAdded: boolean = false;
+    public static polyLines: linePolyLine[] = [];
 
-    private map: any;
+    public map: any;
 
     private constructor() {
 
@@ -47,10 +54,42 @@ export default class MainPageMapProvider{
         })
     }
 
-    public drawLineOfStations(line: Line){
+    public drawLineOfStations(line: Line, color: string){
         const points:LatLngExpression[] = line.stations.map(station => {
             return [station.location.lat, station.location.lon]
         })
-        L.polyline(points).addTo(MainPageMapProvider.instance.map)
+        let polyline = L.polyline(points).addTo(MainPageMapProvider.instance.map)
+        polyline.setStyle({
+            color,
+            weight: 6
+        })
+        MainPageMapProvider.polyLines.push({lineName: line.name, polyLine: polyline})
     }
+
+    public createLegend(lines: Line[], colors: string[]){
+        // @ts-ignore
+        let legend = L.control({position: 'bottomleft'});
+        legend.onAdd = function(map:any) {
+
+            let div = L.DomUtil.create('div', 'info legend');
+            let labels:string[] = []
+            let upperLaber = '<strong id="upper-label">Linie <i class="icon-down-open rotate-icon"></i></strong>'
+            lines.forEach((line, index) => {
+                labels.push(`
+                    <span class="legend-fragment">
+                        <div class="circle-legend" style="background-color: ${colors[index]}"></div><span>${line.name}: ${line.begin.name} - ${line.end.name}</span>
+                    </span>
+                `)
+
+            })
+
+            div.innerHTML = upperLaber + '<div id="labels-container" class="hide-legend">'+labels.join('<br>')+'</div>' ;
+            return div;
+        };
+        legend.addTo(MainPageMapProvider.instance.map);
+        addFunctionsToLegend()
+        makeLegendDropDown()
+    }
+
+
 }

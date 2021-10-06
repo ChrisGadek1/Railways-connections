@@ -11,6 +11,12 @@
       "css": "train",
       "code": 62008,
       "src": "fontawesome"
+    },
+    {
+      "uid": "d9be617b7f2fe7843118ca2d3a1b8cca",
+      "css": "down-open",
+      "code": 61444,
+      "src": "mfglabs"
     }
   ]
 }
