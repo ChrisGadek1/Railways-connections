@@ -13,6 +13,14 @@ const MainPage = () => {
                 </p>
             </section>
             <MainPageMap />
+            <footer>
+                Zapraszamy!
+                <div>
+                    <hr />
+                    <p>&copy; 2021 Sieniczniańskie Linie Kolejowe</p>
+                </div>
+
+            </footer>
         </main>
     )
 }

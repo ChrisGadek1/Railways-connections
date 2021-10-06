@@ -12,10 +12,18 @@
     .main-page section{
         width: 90%;
     }
+
+    .main-page footer{
+        width: 100%;
+    }
 }
 
 @media (min-width: 900px) {
     .main-page section{
+        width: 80%;
+    }
+
+    .main-page footer{
         width: 80%;
     }
 }
@@ -24,3 +32,9 @@
     text-align: center;
     margin: 0 10px 0 10px;
 }
+
+.main-page footer{
+    text-align: center;
+    margin: auto;
+}
+
