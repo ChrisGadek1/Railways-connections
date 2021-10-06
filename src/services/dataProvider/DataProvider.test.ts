@@ -16,6 +16,8 @@ it("creates valid stations objects", async () => {
             expect(stationsTest[i].name).toEqual(stations[i].name)
             expect(stationsTest[i].location).toEqual(stations[i].location)
         }
+    }).catch(() => {
+        throw 'fetching data caused an error'
     })
 })
 
@@ -34,5 +36,7 @@ it("creates valid lines objects", async () => {
                 return station.id
             }))
         }
+    }).catch(() => {
+        throw 'fetching data caused an error'
     })
 })

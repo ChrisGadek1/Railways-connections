@@ -41,7 +41,11 @@ export default class DataProvider{
                 DataProvider.instance._lines = lines.map(line => {
                     return DataProvider.createLineObject(line);
                 })
+            }).catch(() => {
+                throw 'fetching data caused an error'
             })
+        }).catch(() => {
+            throw 'fetching data caused error'
         });
     }
 
