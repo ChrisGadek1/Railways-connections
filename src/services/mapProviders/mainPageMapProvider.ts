@@ -51,6 +51,7 @@ export default class MainPageMapProvider{
     public addPointsToTheMap(stations: Station[]){
         stations.forEach(station => {
             L.marker([station.location.lat, station.location.lon]).addTo(MainPageMapProvider.instance.map)
+                .bindPopup(station.name)
         })
     }
 
