@@ -5,6 +5,7 @@ import WeekDateConverter from "../WeekDateConverter/WeekDateConverter";
 import {StationJson} from "../../data/types/StationJson";
 import {LinesJson} from "../../data/types/LinesJson";
 import {LineJsonElement} from "../../data/types/LineJsonElement";
+import {Provider} from "react-redux";
 
 export default class DataProvider{
     private static instance: DataProvider;
@@ -25,13 +26,12 @@ export default class DataProvider{
     public static getInstance(){
         if(!DataProvider.instance){
             DataProvider.instance = new DataProvider();
-            DataProvider.fetchData()
         }
 
         return DataProvider.instance
     }
 
-    private static fetchData(){
+    fetchData = new Promise((resolve, reject) => {
         axios("/jsons/stations.json").then(({ data: {stations} }:StationJson) => {
             DataProvider.instance._stations = stations.map(station => {
                 return new Station(station.id, station.name, station.location);
@@ -41,13 +41,14 @@ export default class DataProvider{
                 DataProvider.instance._lines = lines.map(line => {
                     return DataProvider.createLineObject(line);
                 })
+                resolve({stations: DataProvider.instance.stations, lines: DataProvider.instance.lines })
             }).catch(() => {
-                throw 'fetching data caused an error'
+                reject('fetching data caused an error')
             })
         }).catch(() => {
-            throw 'fetching data caused error'
+            reject('fetching data caused error')
         });
-    }
+    })
 
     private static createLineObject(line: LineJsonElement){
         const weekDateConverter = new WeekDateConverter()
