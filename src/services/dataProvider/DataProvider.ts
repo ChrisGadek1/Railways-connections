@@ -5,7 +5,6 @@ import WeekDateConverter from "../WeekDateConverter/WeekDateConverter";
 import {StationJson} from "../../data/types/StationJson";
 import {LinesJson} from "../../data/types/LinesJson";
 import {LineJsonElement} from "../../data/types/LineJsonElement";
-import {Provider} from "react-redux";
 
 export default class DataProvider{
     private static instance: DataProvider;
@@ -52,8 +51,16 @@ export default class DataProvider{
 
     private static createLineObject(line: LineJsonElement){
         const weekDateConverter = new WeekDateConverter()
-        const lineStations = DataProvider.instance._stations.filter(station => {
-            return line.stations.includes(station.id)
+        const lineStations = line.stations.map(stationID => {
+            const foundStation = DataProvider.instance._stations.find(stationToFind => {
+                return stationToFind.id === stationID
+            })
+            if(foundStation !== undefined){
+                return foundStation
+            }
+            else{
+                throw 'cannot find station with ID '+stationID
+            }
         })
         const beginStation = DataProvider.instance._stations.find(station => {
             return station.id === line.begin

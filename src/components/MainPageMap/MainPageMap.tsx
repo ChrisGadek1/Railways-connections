@@ -11,7 +11,12 @@ const MainPageMap = () => {
     useEffect(() => {
         map = MainPageMapProvider.getInstance()
         map.addMap();
-        map.addPointsToTheMap(data.stations)
+        if(data.data.stations.length > 0){
+            map.addPointsToTheMap(data.data.stations)
+        }
+        if(data.data.lines.length > 0){
+            map.drawLineOfStations(data.data.lines[0]);
+        }
         return () => {
             map.removeMap()
         }

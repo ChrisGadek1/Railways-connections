@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 import './NavButton.css'
@@ -13,15 +13,10 @@ type propsType = {
 
 const NavButton = ({ name, url, id } : propsType) => {
 
-    useEffect(() => {
-
-
-    }, [])
-
     const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 
     return (
-        <li className={mobileAnimation ? "menu-element active-menu" : "menu-element hidden-menu"}
+        <li className={mobileAnimation.mobileAnimation ? "menu-element active-menu" : "menu-element hidden-menu"}
             id={"menu-element-"+id}
         >
             <Link className="menu-link" to={url}>{name}</Link>

@@ -2,13 +2,20 @@ import {
     SHOW, HIDE
 } from "../actions/mobileAnimationActions";
 import {ActionType} from "../actions/actionType";
+import initialState from "./initialState";
 
-const mobileAnimationReducer = (state = false, action: ActionType) => {
+const mobileAnimationReducer = (state: typeof initialState = initialState, action: ActionType) => {
     switch (action.type){
         case SHOW:
-            return true
+            return {
+                ...state,
+                mobileAnimation: true
+            }
         case HIDE:
-            return false
+            return {
+                ...state,
+                mobileAnimation: false
+            }
         default:
             return state
     }

@@ -7,8 +7,6 @@ import ConnectionChoosingWrapper from "../ConnectionChoosingWrapper/ConnectionCh
 import {useDispatch} from "react-redux";
 import DataProvider from "../../services/dataProvider/DataProvider";
 import {loadData} from "../../actions/dataProviderActions";
-import Station from "../../data/classes/Station";
-import Line from "../../data/classes/Line";
 
 const Content = () => {
 

@@ -1,12 +1,16 @@
 import {ActionType} from "../actions/actionType";
 import {LOAD_DATA} from "../actions/dataProviderActions";
+import initialState from "./initialState";
 
-const dataReducer = (state = {stations: [], lines: []}, action: ActionType) => {
+const dataReducer = (state:typeof initialState = initialState, action: ActionType) => {
     switch (action.type) {
         case LOAD_DATA:
-            return action.payload
+            return {
+                ...state,
+                data: action.payload
+            }
         default:
-            return {stations: [], lines: []}
+            return state
     }
 }
 

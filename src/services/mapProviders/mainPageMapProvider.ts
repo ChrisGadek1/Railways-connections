@@ -1,6 +1,7 @@
-import L from 'leaflet'
+import L, {LatLngExpression} from 'leaflet'
 import $ from "jquery";
 import Station from "../../data/classes/Station";
+import Line from "../../data/classes/Line";
 
 export default class MainPageMapProvider{
     private static instance: MainPageMapProvider;
@@ -40,10 +41,16 @@ export default class MainPageMapProvider{
     }
 
 
-
     public addPointsToTheMap(stations: Station[]){
         stations.forEach(station => {
             L.marker([station.location.lat, station.location.lon]).addTo(MainPageMapProvider.instance.map)
         })
+    }
+
+    public drawLineOfStations(line: Line){
+        const points:LatLngExpression[] = line.stations.map(station => {
+            return [station.location.lat, station.location.lon]
+        })
+        L.polyline(points).addTo(MainPageMapProvider.instance.map)
     }
 }
