@@ -1,6 +1,7 @@
 import initialState from "./initialState";
 import {ActionType} from "../actions/actionType";
 import {
+    ADD_ALL_LINES, ADD_ALL_STATIONS,
     ADD_LINE,
     ADD_STATION,
     REMOVE_ALL_LINES,
@@ -42,6 +43,16 @@ export const selectDataReducer = (state: typeof initialState = initialState, act
             return {
                 ...state,
                 selectedLines: []
+            }
+        case ADD_ALL_LINES:
+            return {
+                ...state,
+                selectedLines: [...state.selectedLines, action.payload]
+            }
+        case ADD_ALL_STATIONS:
+            return {
+                ...state,
+                selectedStations: [...state.selectedStations, action.payload]
             }
         default:
             return state

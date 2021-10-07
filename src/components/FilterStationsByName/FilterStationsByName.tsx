@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Station from "../../data/classes/Station";
 import {addStation, removeALLStations} from "../../actions/selectDataActions";
+import './FilterStationsByName.css'
 
 type Option = {
     label: string,
@@ -22,7 +23,7 @@ const FilterStationsByName = () => {
         }
     })
 
-    const handleOnChange = (option: Option | null, actionMeta: ActionMeta<Option>) => {
+    const handleOnChange = (option: Option | null) => {
         if(option !== null){
             const foundStation = stations.find(station => station.name === option.label);
             if(foundStation === undefined){

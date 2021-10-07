@@ -7,6 +7,8 @@ export const ADD_LINE = 'ADD_LINE'
 export const REMOVE_LINE = 'REMOVE_LINE'
 export const REMOVE_ALL_LINES = 'REMOVE_ALL_LINES'
 export const REMOVE_ALL_STATIONS = 'REMOVE_ALL_STATIONS'
+export const ADD_ALL_LINES = 'ADD_ALL_LINES'
+export const ADD_ALL_STATIONS = 'ADD_ALL_STATIONS'
 
 export const addStation = (station: Station) => ({
     type: ADD_STATION,
@@ -36,4 +38,14 @@ export const removeAllLines = () => ({
 export const removeALLStations = () => ({
     type: REMOVE_ALL_STATIONS,
     payload: {}
+})
+
+export const addAllLines = (lines: Line[]) => ({
+    type: ADD_ALL_LINES,
+    payload: lines
+})
+
+export const addAllStations = (stations: Station[]) => ({
+    type: ADD_ALL_STATIONS,
+    payload: stations
 })
