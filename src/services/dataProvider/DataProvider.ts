@@ -38,7 +38,7 @@ export default class DataProvider{
                 return new Station(station.id, station.name, station.location);
             })
             DataProvider.instance._lines = lines.map(line => {
-                return DataProvider.createLineObject(line, stations);
+                return DataProvider.createLineObject(line);
             })
             return {stations: DataProvider.instance.stations, lines: DataProvider.instance.lines }
         }).catch(() => {
@@ -47,10 +47,10 @@ export default class DataProvider{
         });
     }
 
-    private static createLineObject(line: LineJsonElement, stations: Station[]){
+    private static createLineObject(line: LineJsonElement){
         const weekDateConverter = new WeekDateConverter()
         const lineStations = line.stations.map(stationID => {
-            const foundStation = stations.find(stationToFind => {
+            const foundStation = DataProvider.instance._stations.find(stationToFind => {
                 return stationToFind.id === stationID
             })
             if(foundStation !== undefined){
@@ -60,10 +60,10 @@ export default class DataProvider{
                 throw 'cannot find station with ID '+stationID
             }
         })
-        const beginStation = stations.find(station => {
+        const beginStation = DataProvider.instance._stations.find(station => {
             return station.id === line.begin
         })
-        const endStation = stations.find(station => {
+        const endStation = DataProvider.instance._stations.find(station => {
             return station.id === line.end
         })
         const weekDays = line.time.map(departureTime => {

@@ -4,14 +4,18 @@ import Line from "../../data/classes/Line";
 export class StationsFilter{
     public static filter(allStations: Station[] ,selectedStations: Station[], selectedLines: Line[]): Station[]{
         return allStations.filter(station => {
+
+            let foundStation = false
+
             if(selectedStations.length === 1){
                 if(selectedStations[0].id === station.id){
-                    return true;
-                }
-                else {
-                    return false
+                    foundStation = true;
                 }
             }
+            else{
+                foundStation = true
+            }
+
 
             let flag = true;
             selectedLines.forEach((line: Line) => {
@@ -19,7 +23,12 @@ export class StationsFilter{
                     flag = false
                 }
             })
-            return flag;
+            if(selectedLines.length === 0){
+                flag = true
+            }
+
+            return !(!foundStation || !flag)
+
 
         })
     }

@@ -35,13 +35,6 @@ const FilterStationsByLines = () => {
         dispatcher(addAllLines(foundLines));
     }
 
-    useEffect(() => {
-        return () => {
-            dispatcher(removeAllLines())
-            dispatcher(removeALLStations())
-        }
-    })
-
 
     return(
         <div className="filter-stations-by-line">

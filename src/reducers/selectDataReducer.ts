@@ -47,12 +47,12 @@ export const selectDataReducer = (state: typeof initialState = initialState, act
         case ADD_ALL_LINES:
             return {
                 ...state,
-                selectedLines: [...state.selectedLines, action.payload]
+                selectedLines: [...state.selectedLines, action.payload].flat(1)
             }
         case ADD_ALL_STATIONS:
             return {
                 ...state,
-                selectedStations: [...state.selectedStations, action.payload]
+                selectedStations: [...state.selectedStations, action.payload].flat(1)
             }
         default:
             return state
