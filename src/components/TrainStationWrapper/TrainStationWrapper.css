@@ -1,0 +1,17 @@
+.train-station-wrapper{
+    margin-top: 100px;
+}
+
+@media (min-width: 900px) {
+    .filter-stations-by-name{
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 899px) {
+    .filter-stations-by-name{
+        width: 95%;
+        margin: auto;
+    }
+}
