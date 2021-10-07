@@ -74,7 +74,7 @@ export default class MainPageMapProvider{
 
             let div = L.DomUtil.create('div', 'info legend');
             let labels:string[] = []
-            let upperLaber = '<strong id="upper-label">Linie <i class="icon-down-open rotate-icon"></i></strong>'
+            let upperLaber = '<strong id="upper-label">Linie (Kliknij aby zobaczyć)<i class="icon-down-open rotate-icon"></i></strong>'
             lines.forEach((line, index) => {
                 labels.push(`
                     <span class="legend-fragment">
