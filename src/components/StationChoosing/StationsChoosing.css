@@ -1,0 +1,17 @@
+.stations-choosing{
+    margin: 40px auto 10px auto;
+    border-top: 1px solid #000;
+}
+
+@media (min-width: 900px){
+    .stations-choosing{
+        width: 80%;
+    }
+}
+
+@media (max-width: 899px) {
+    .stations-choosing{
+        width: 95%;
+    }
+}
+

@@ -30,29 +30,27 @@ export default class DataProvider{
         return DataProvider.instance
     }
 
-    fetchData = new Promise((resolve, reject) => {
-        axios("/jsons/stations.json").then(({ data: {stations} }:StationJson) => {
+    public fetchData(){
+        return axios.all([axios.get('/jsons/stations.json'), axios.get('/jsons/lines.json')]).then((responses) => {
+            const {data: {stations}}:StationJson = responses[0];
+            const {data: {lines} }:LinesJson = responses[1];
             DataProvider.instance._stations = stations.map(station => {
                 return new Station(station.id, station.name, station.location);
             })
-        }).then(() => {
-            axios("/jsons/lines.json").then( ( {data: {lines} }:LinesJson ) => {
-                DataProvider.instance._lines = lines.map(line => {
-                    return DataProvider.createLineObject(line);
-                })
-                resolve({stations: DataProvider.instance.stations, lines: DataProvider.instance.lines })
-            }).catch(() => {
-                reject('fetching data caused an error')
+            DataProvider.instance._lines = lines.map(line => {
+                return DataProvider.createLineObject(line, stations);
             })
+            return {stations: DataProvider.instance.stations, lines: DataProvider.instance.lines }
         }).catch(() => {
-            reject('fetching data caused error')
+            console.error('error with Internet Connection!');
+            return {stations: [], lines: [] }
         });
-    })
+    }
 
-    private static createLineObject(line: LineJsonElement){
+    private static createLineObject(line: LineJsonElement, stations: Station[]){
         const weekDateConverter = new WeekDateConverter()
         const lineStations = line.stations.map(stationID => {
-            const foundStation = DataProvider.instance._stations.find(stationToFind => {
+            const foundStation = stations.find(stationToFind => {
                 return stationToFind.id === stationID
             })
             if(foundStation !== undefined){
@@ -62,10 +60,10 @@ export default class DataProvider{
                 throw 'cannot find station with ID '+stationID
             }
         })
-        const beginStation = DataProvider.instance._stations.find(station => {
+        const beginStation = stations.find(station => {
             return station.id === line.begin
         })
-        const endStation = DataProvider.instance._stations.find(station => {
+        const endStation = stations.find(station => {
             return station.id === line.end
         })
         const weekDays = line.time.map(departureTime => {

@@ -8,7 +8,7 @@ import './Nav.css'
 const options = [
     {name: 'Strona Główna', url: '/'},
     {name: 'Przystanki', url: '/przystanki'},
-    {name: 'Linie', url: '/linie'},
+    {name: 'Połączenia', url: '/linie'},
     {name: 'Znajdź trasę', url: '/znajdz-trase'}
 ]
 
