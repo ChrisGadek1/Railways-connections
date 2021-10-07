@@ -1,8 +1,9 @@
 import React from "react";
 import Select, {ActionMeta} from "react-select";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Station from "../../data/classes/Station";
+import {addStation, removeALLStations} from "../../actions/selectDataActions";
 
 type Option = {
     label: string,
@@ -11,7 +12,8 @@ type Option = {
 
 const FilterStationsByName = () => {
 
-    const stations = useSelector((state: RootState) => state.data.data.stations)
+    const stations: Station[] = useSelector((state: RootState) => state.data.data.stations)
+    const dispatcher = useDispatch()
 
     const stationOptions = stations.map((station: Station): Option => {
         return{
@@ -21,7 +23,14 @@ const FilterStationsByName = () => {
     })
 
     const handleOnChange = (option: Option | null, actionMeta: ActionMeta<Option>) => {
-
+        if(option !== null){
+            const foundStation = stations.find(station => station.name === option.label);
+            if(foundStation === undefined){
+                throw 'cannot find station with name:'+option.value
+            }
+            dispatcher(removeALLStations());
+            dispatcher(addStation(foundStation));
+        }
     }
 
     return(

@@ -1,6 +1,13 @@
 import initialState from "./initialState";
 import {ActionType} from "../actions/actionType";
-import {ADD_LINE, ADD_STATION, REMOVE_LINE, REMOVE_STATION} from "../actions/selectDataActions";
+import {
+    ADD_LINE,
+    ADD_STATION,
+    REMOVE_ALL_LINES,
+    REMOVE_ALL_STATIONS,
+    REMOVE_LINE,
+    REMOVE_STATION
+} from "../actions/selectDataActions";
 import Station from "../data/classes/Station";
 import Line from "../data/classes/Line";
 
@@ -25,6 +32,16 @@ export const selectDataReducer = (state: typeof initialState = initialState, act
             return {
                 ...state,
                 selectedLines: state.selectedLines.filter((line: Line) => line.name !== action.payload)
+            }
+        case REMOVE_ALL_STATIONS:
+            return {
+                ...state,
+                selectedStations: []
+            }
+        case REMOVE_ALL_LINES:
+            return {
+                ...state,
+                selectedLines: []
             }
         default:
             return state
