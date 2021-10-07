@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Select from "react-select";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Line from "../../data/classes/Line";
-import {addAllLines, removeAllLines} from "../../actions/selectDataActions";
+import {addAllLines, removeAllLines, removeALLStations} from "../../actions/selectDataActions";
 import './FilterStationsByLines.css'
 import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
@@ -31,10 +31,16 @@ const FilterStationsByLines = () => {
         const foundLines = lines.filter(line => {
             return options.find(option => option.value === line.name)
         })
-
         dispatcher(removeAllLines());
         dispatcher(addAllLines(foundLines));
     }
+
+    useEffect(() => {
+        return () => {
+            dispatcher(removeAllLines())
+            dispatcher(removeALLStations())
+        }
+    })
 
 
     return(
