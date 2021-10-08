@@ -22,20 +22,19 @@
     margin: auto;
 }
 
+.station-lines-container{
+    margin: 20px auto 0 auto;
+    border-top: 1px solid #000;
+}
+
 @media (min-width: 900px) {
-    .station-details-content{
+    .station-details-content, #station-details-map, .station-lines-container{
         width: 80%;
-    }
-    #station-details-map{
-        width: 60%;
     }
 }
 
 @media (max-width: 899px) {
-    .station-details-content{
-        width: 90%;
-    }
-    #station-details-map{
+    .station-details-content, #station-details-map, .station-lines-container {
         width: 90%;
     }
 }

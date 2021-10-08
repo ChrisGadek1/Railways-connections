@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useParams} from "react-router-dom";
 import './StationDetails.css'
-import MainPage from "../MainPage/MainPage";
 import Station from "../../data/classes/Station";
 import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
-import StationDetailsMapProvider from "../../services/mapProviders/StationDetailsMapProvider";
+import StationMap from "../StationMap/StationMap";
+import StationDetailsLinesWrapper from "../StationDetailsLinesWrapper/StationDetailsLinesWrapper";
 
 type StationParams = {
     id: string;
@@ -32,18 +32,6 @@ const StationDetails = () => {
     const stations: Station[] = useSelector((state: RootState) => state.data.data.stations);
     const station: Station|undefined = stations.find(station => station.id === parseInt(id, 10))
 
-    useEffect(() => {
-        if(station !== undefined){
-            const mapProvider = StationDetailsMapProvider.getInstance(station)
-            mapProvider.addMap()
-            mapProvider.addStationToTheMap()
-            return () => {
-                mapProvider.removeMap()
-            }
-        }
-
-    },[stations])
-
     if(station === undefined){
         return(
             <>
@@ -62,8 +50,11 @@ const StationDetails = () => {
                     <div className="station-details-content">
                         <section>
                             <h2>Szczegóły na temat wybranej stacji: {station.name}</h2>
-                            <div id="station-details-map">
-
+                            <div id="station-details-map"></div>
+                            <StationMap station={station} />
+                            <div className="station-lines-container">
+                                <h2>Odjazdy pociągów</h2>
+                                <StationDetailsLinesWrapper />
                             </div>
                         </section>
                     </div>
