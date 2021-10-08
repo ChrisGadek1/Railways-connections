@@ -54,7 +54,7 @@ const StationDetails = () => {
                             <StationMap station={station} />
                             <div className="station-lines-container">
                                 <h2>Odjazdy pociągów</h2>
-                                <StationDetailsLinesWrapper />
+                                <StationDetailsLinesWrapper station={station} />
                             </div>
                         </section>
                     </div>
