@@ -5,7 +5,7 @@ import App from "../App/App";
 const renderData = [
     {name: /Przystanki/i, testID: 'train-station-wrapper'},
     {name: /Strona Główna/i, testID: 'main-page'},
-    {name: /Linie/i, testID: 'train-choosing-wrapper'},
+    {name: /Połączenia/i, testID: 'train-choosing-wrapper'},
     {name: /Znajdź trasę/i, testID: 'connection-choosing-wrapper'}
 ]
 

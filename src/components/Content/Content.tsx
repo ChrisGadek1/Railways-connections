@@ -14,7 +14,7 @@ const Content = () => {
 
     useEffect(() => {
         const dataProvider = DataProvider.getInstance();
-        dataProvider.fetchData.then((data:any) => {
+        dataProvider.fetchData().then((data:any) => {
             const stations = data.stations;
             const lines = data.lines;
 

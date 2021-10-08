@@ -1,0 +1,25 @@
+.stations-choosing{
+    margin: 40px auto 10px auto;
+    border-top: 1px solid #000;
+}
+
+.stations-container{
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    justify-content: center;
+    gap: 10px 30px;
+}
+
+@media (min-width: 900px){
+    .stations-choosing{
+        width: 80%;
+    }
+}
+
+@media (max-width: 899px) {
+    .stations-choosing{
+        width: 95%;
+    }
+}
+

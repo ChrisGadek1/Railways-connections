@@ -17,6 +17,12 @@
       "css": "down-open",
       "code": 61444,
       "src": "mfglabs"
+    },
+    {
+      "uid": "513ac180ff85bd275f2b736720cbbf5e",
+      "css": "home",
+      "code": 59392,
+      "src": "entypo"
     }
   ]
 }

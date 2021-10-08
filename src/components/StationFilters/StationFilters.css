@@ -1,0 +1,11 @@
+.station-filters{
+    padding: 20px;
+    background-color: #dbdbdb;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 0 #000;
+}
+
+.station-filters{
+    width: 85%;
+}

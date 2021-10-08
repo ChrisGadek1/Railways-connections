@@ -30,24 +30,22 @@ export default class DataProvider{
         return DataProvider.instance
     }
 
-    fetchData = new Promise((resolve, reject) => {
-        axios("/jsons/stations.json").then(({ data: {stations} }:StationJson) => {
+    public fetchData(){
+        return axios.all([axios.get('/jsons/stations.json'), axios.get('/jsons/lines.json')]).then((responses) => {
+            const {data: {stations}}:StationJson = responses[0];
+            const {data: {lines} }:LinesJson = responses[1];
             DataProvider.instance._stations = stations.map(station => {
                 return new Station(station.id, station.name, station.location);
             })
-        }).then(() => {
-            axios("/jsons/lines.json").then( ( {data: {lines} }:LinesJson ) => {
-                DataProvider.instance._lines = lines.map(line => {
-                    return DataProvider.createLineObject(line);
-                })
-                resolve({stations: DataProvider.instance.stations, lines: DataProvider.instance.lines })
-            }).catch(() => {
-                reject('fetching data caused an error')
+            DataProvider.instance._lines = lines.map(line => {
+                return DataProvider.createLineObject(line);
             })
+            return {stations: DataProvider.instance.stations, lines: DataProvider.instance.lines }
         }).catch(() => {
-            reject('fetching data caused error')
+            console.error('error with Internet Connection!');
+            return {stations: [], lines: [] }
         });
-    })
+    }
 
     private static createLineObject(line: LineJsonElement){
         const weekDateConverter = new WeekDateConverter()
