@@ -14,6 +14,7 @@ const StationChoosing = () => {
     const selectedLines: Line[] = useSelector((state: any) => state.selectedData.selectedLines)
 
     const filteredStations = StationsFilter.filter(stations, selectedStations, selectedLines);
+    filteredStations.sort((a, b) => (a.name > b.name) ? 1 : -1)
 
     const stationComponents = filteredStations.map(station => <StationComponent key={station.name} station={station} />)
 
