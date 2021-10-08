@@ -37,7 +37,7 @@ const FilterStationsByName = () => {
     return(
         <div className="filter-stations-by-name">
             <Select options={stationOptions}
-                    placeholder="Wybierz nazwę stacji..."
+                    placeholder="Wybierz nazwę linii..."
                     onChange={handleOnChange}
             />
         </div>

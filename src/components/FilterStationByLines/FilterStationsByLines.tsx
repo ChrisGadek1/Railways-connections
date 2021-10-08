@@ -39,7 +39,7 @@ const FilterStationsByLines = () => {
     return(
         <div className="filter-stations-by-line">
             <Select
-                    placeholder="Wybierz linie, na których jest przystanek..."
+                    placeholder="Wybierz stacje, na których jest przystanek..."
                     // @ts-ignore
                     onChange={handleOnChange}
                     components={animatedComponents}

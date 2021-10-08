@@ -1,0 +1,15 @@
+.filter-lines-by-stations{
+    margin: auto;
+}
+
+@media (min-width: 900px) {
+    .filter-lines-by-stations{
+        width: 80%;
+    }
+}
+
+@media (max-width: 899px) {
+    .filter-lines-by-stations{
+        width: 95%;
+    }
+}
