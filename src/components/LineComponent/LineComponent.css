@@ -1,0 +1,20 @@
+.line-component{
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
+    background-color: #dbdbdb;
+    box-shadow: 0 0 5px 0 #000;
+    transition: 0.3s;
+    width: 100px;
+    border-radius: 2px;
+}
+
+.line-component i{
+    display: block;
+}
+
+.line-component:hover{
+    box-shadow: 0 0 5px 0 inset #000;
+    transition: 0.3s;
+    cursor: pointer;
+}
