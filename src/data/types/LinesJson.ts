@@ -2,6 +2,7 @@ import {LineJsonElement} from "./LineJsonElement";
 
 export type LinesJson = {
     data: {
-        lines: LineJsonElement[]
+        lines: LineJsonElement[],
+        speed: number
     }
 }

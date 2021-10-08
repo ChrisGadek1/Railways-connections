@@ -5,6 +5,7 @@ import WeekDateConverter from "../WeekDateConverter/WeekDateConverter";
 import {StationJson} from "../../data/types/StationJson";
 import {LinesJson} from "../../data/types/LinesJson";
 import {LineJsonElement} from "../../data/types/LineJsonElement";
+import {speed} from "jquery";
 
 export default class DataProvider{
     private static instance: DataProvider;
@@ -33,17 +34,17 @@ export default class DataProvider{
     public fetchData(){
         return axios.all([axios.get('/jsons/stations.json'), axios.get('/jsons/lines.json')]).then((responses) => {
             const {data: {stations}}:StationJson = responses[0];
-            const {data: {lines} }:LinesJson = responses[1];
+            const {data: {lines, speed} }:LinesJson = responses[1];
             DataProvider.instance._stations = stations.map(station => {
                 return new Station(station.id, station.name, station.location);
             })
             DataProvider.instance._lines = lines.map(line => {
                 return DataProvider.createLineObject(line);
             })
-            return {stations: DataProvider.instance.stations, lines: DataProvider.instance.lines }
+            return {stations: DataProvider.instance.stations, lines: DataProvider.instance.lines, speed: speed }
         }).catch(() => {
             console.error('error with Internet Connection!');
-            return {stations: [], lines: [] }
+            return {stations: [], lines: [], speed: null }
         });
     }
 

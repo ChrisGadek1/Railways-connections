@@ -18,8 +18,9 @@ const Content = () => {
         dataProvider.fetchData().then((data:any) => {
             const stations = data.stations;
             const lines = data.lines;
+            const speed = data.speed;
 
-            dispatch(loadData({stations, lines}))
+            dispatch(loadData({stations, lines, speed}))
         })
 
 

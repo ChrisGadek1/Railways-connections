@@ -11,11 +11,12 @@ type propsType = {
 
 const StationDetailsLine = (props:propsType) => {
     return(
-        <div>
+        <div className="stations-details-line">
             <div className="line-wrapper">
                 <LineComponent line={props.line} />
+                <p>Kierunek: <strong>{props.line.end.name}</strong></p>
             </div>
-
+            <hr />
         </div>
     )
 }
