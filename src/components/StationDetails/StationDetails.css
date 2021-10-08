@@ -1,0 +1,42 @@
+.station-details{
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    max-width: 100vw;
+    background-color: rgba(51,51,51,0.5);
+}
+
+.station-details-content{
+    margin: 120px auto 0 auto;
+    text-align: center;
+    background-color: #e0cd79;
+    padding: 2% 0 2% 0;
+    border-radius: 20px;
+}
+
+#station-details-map{
+    max-height: 60vh;
+    margin: auto;
+}
+
+@media (min-width: 900px) {
+    .station-details-content{
+        width: 80%;
+    }
+    #station-details-map{
+        width: 60%;
+    }
+}
+
+@media (max-width: 899px) {
+    .station-details-content{
+        width: 90%;
+    }
+    #station-details-map{
+        width: 90%;
+    }
+}
+
