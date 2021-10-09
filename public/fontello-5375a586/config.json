@@ -23,6 +23,12 @@
       "css": "home",
       "code": 59392,
       "src": "entypo"
+    },
+    {
+      "uid": "ef3eda51383ce050517892df3fc05ffc",
+      "css": "right-thin",
+      "code": 59393,
+      "src": "entypo"
     }
   ]
 }

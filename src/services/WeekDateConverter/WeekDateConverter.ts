@@ -59,4 +59,23 @@ export default class WeekDateConverter{
         }
     }
 
+    getPolishNameOfTheWeekDay(day: Day){
+        switch (day) {
+            case Day.MONDAY:
+                return 'Poniedziałek'
+            case Day.TUESDAY:
+                return 'Wtorek'
+            case Day.WEDNESDAY:
+                return 'Środa'
+            case Day.THURSDAY:
+                return 'Czwartek'
+            case Day.FRIDAY:
+                return 'Piątek'
+            case Day.SATURDAY:
+                return 'Sobota'
+            case Day.SUNDAY:
+                return 'Niedziela'
+        }
+    }
+
 }

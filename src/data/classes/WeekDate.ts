@@ -18,6 +18,18 @@ export default class WeekDate {
         return this._minutes;
     }
 
+    public hoursString():string{
+        return this._hours < 10 ? "0"+this._hours : this._hours.toString()
+    }
+
+    public minutesString():string{
+        return this._minutes < 10 ? "0"+this._minutes : this._minutes.toString()
+    }
+
+    public secondsString():string{
+        return this._seconds < 10 ? "0"+this._seconds : this._seconds.toString()
+    }
+
     addTime(seconds: number){
         const weekDateConverter = new WeekDateConverter();
         const newWeekDate = weekDateConverter.convert(weekDateConverter.convertToSeconds(this) + seconds);
