@@ -4,6 +4,7 @@ import WeekDate from "../../data/classes/WeekDate";
 export default class WeekDateConverter{
 
     convert(seconds: number): WeekDate{
+        seconds %= 604800
         let day:Day;
         switch (Math.trunc(seconds / 86400)){
             case 0:
