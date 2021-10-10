@@ -1,11 +1,8 @@
 import React from "react";
 import './LineDetails.css'
 import {useParams} from "react-router-dom";
-import Station from "../../data/classes/Station";
 import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
-import StationMap from "../StationMap/StationMap";
-import StationDetailsLinesWrapper from "../StationDetailsLinesWrapper/StationDetailsLinesWrapper";
 import Line from "../../data/classes/Line";
 import LineMap from "../LineMap/LineMap";
 import LineDetailsStationsWrapper from "../LineDetailsStationsWrapper/LineDetailsStationsWrapper";
