@@ -1,6 +1,7 @@
 import Line from "../../data/classes/Line";
 import $ from "jquery";
 import L, {LatLngExpression} from "leaflet";
+import Station from "../../data/classes/Station";
 
 export default class LineDetailsMapProvider{
     public static set line(value: Line) {
@@ -30,15 +31,23 @@ export default class LineDetailsMapProvider{
 
     public addMap(){
         if(LineDetailsMapProvider.instance.map === undefined){
-            LineDetailsMapProvider.instance.map = L.map('station-details-map').setView([50.265951,  19.616134], 12.1);
+            LineDetailsMapProvider.instance.map = L.map('line-details-map').setView([50.265951,  19.616134], 12.1);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
             }).addTo(LineDetailsMapProvider.instance.map);
         }
     }
 
-    public drawLine(line: Line) {
-        const points: LatLngExpression[] = line.stations.map(station => {
+    public addPointsToTheMap(){
+        LineDetailsMapProvider._line.stations.forEach(station => {
+            L.marker([station.location.lat, station.location.lon]).addTo(LineDetailsMapProvider.instance.map)
+                .bindPopup(station.name)
+        })
+    }
+
+
+    public drawLine() {
+        const points: LatLngExpression[] = LineDetailsMapProvider._line.stations.map(station => {
             return [station.location.lat, station.location.lon]
         })
         let polyline = L.polyline(points).addTo(LineDetailsMapProvider.instance.map)

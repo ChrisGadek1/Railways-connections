@@ -50,7 +50,7 @@ const StationDetails = () => {
                     <div className="station-details-content">
                         <section>
                             <h2>Szczegóły na temat wybranej stacji: {station.name}</h2>
-                            <div id="station-details-map"></div>
+
                             <StationMap station={station} />
                             <div className="station-lines-container">
                                 <h2>Odjazdy pociągów</h2>

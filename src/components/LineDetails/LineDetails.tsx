@@ -7,6 +7,7 @@ import {RootState} from "../../reducers/rootReducer";
 import StationMap from "../StationMap/StationMap";
 import StationDetailsLinesWrapper from "../StationDetailsLinesWrapper/StationDetailsLinesWrapper";
 import Line from "../../data/classes/Line";
+import LineMap from "../LineMap/LineMap";
 
 type LineParams = {
     name: string;
@@ -33,8 +34,8 @@ const LineDetails = () => {
     if(line === undefined){
         return(
             <>
-                <div className="station-details">
-                    <div className="station-details-content">
+                <div className="line-details">
+                    <div className="line-details-content">
                         <LineDidntFound name={name} />
                     </div>
                 </div>
@@ -48,9 +49,11 @@ const LineDetails = () => {
                     <div className="line-details-content">
                         <section>
                             <h2>Szczegóły na temat wybranej linii: {line.name}</h2>
-                            <div id="station-details-map"></div>
-
+                            <LineMap line={line}/>
                         </section>
+                        <div className="line-stations-container">
+                            <h2>Odjazdy pociągów</h2>
+                        </div>
                     </div>
                 </div>
             </>
