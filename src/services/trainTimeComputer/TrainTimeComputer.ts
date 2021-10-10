@@ -8,7 +8,8 @@ type location = {
 
 export default class TrainTimeComputer{
     public static computeTime(point1: location, point2:location, speed: number):number{
-        return Math.trunc(DistanceComputer.computeDistance(point1, point2)*this.kmhToMs(speed));
+        const result =  Math.trunc(DistanceComputer.computeDistance(point1, point2)/this.kmhToMs(speed));
+        return result
     }
 
     public static computeTimeBetweenStationsChain(stations: Station[], speed: number): number{

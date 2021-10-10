@@ -40,3 +40,4 @@ it("computes correct distance between points", async () => {
         expect(computedDistance).toEqual(testData.distances[i])
     }
 })
+

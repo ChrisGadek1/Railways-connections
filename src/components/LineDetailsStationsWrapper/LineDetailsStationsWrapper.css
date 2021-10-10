@@ -1,0 +1,19 @@
+.stations-of-lines-list{
+    display: inline-block;
+}
+
+.stations-of-lines-list .icon-wrapper{
+    display: inline-block;
+}
+
+.stations-of-lines{
+    justify-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px 10px;
+}
+
+.icon-wrapper{
+    font-size: 28px;
+    text-align: center;
+}
