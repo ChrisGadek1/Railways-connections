@@ -6,6 +6,7 @@ import './App.css';
 import Nav from "../Nav/Nav";
 import Content from "../Content/Content";
 import {BrowserRouter} from "react-router-dom";
+import PopupWrapper from "../PopupWrapper/PopupWrapper";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                 <BrowserRouter>
                     <Nav/>
                     <Content/>
+                    <PopupWrapper />
                 </BrowserRouter>
             </div>
         </Provider>

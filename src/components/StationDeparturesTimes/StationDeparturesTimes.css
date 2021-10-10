@@ -1,0 +1,21 @@
+.hours-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.hours-for-station{
+    padding: 2px 5px;
+}
+
+.day-hours-component{
+    padding: 5px;
+}
+
+.day-hours-component:nth-child(odd){
+    background-color: #cccccc;
+}
+
+.day-hours-component:nth-child(even){
+    background-color: #333333;
+    color: #dbdbdb;
+}

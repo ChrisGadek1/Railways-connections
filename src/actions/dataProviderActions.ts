@@ -5,13 +5,15 @@ export const LOAD_DATA = 'LOAD_DATA'
 
 type loadDataType = {
     stations: Station[],
-    lines: Line[]
+    lines: Line[],
+    speed: number
 }
 
-export const loadData = ({stations, lines}: loadDataType) => ({
+export const loadData = ({stations, lines, speed}: loadDataType) => ({
     type: LOAD_DATA,
     payload: {
         stations,
-        lines
+        lines,
+        speed
     }
 })

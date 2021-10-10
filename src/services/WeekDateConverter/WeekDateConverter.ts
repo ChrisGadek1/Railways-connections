@@ -4,6 +4,7 @@ import WeekDate from "../../data/classes/WeekDate";
 export default class WeekDateConverter{
 
     convert(seconds: number): WeekDate{
+        seconds %= 604800
         let day:Day;
         switch (Math.trunc(seconds / 86400)){
             case 0:
@@ -55,6 +56,25 @@ export default class WeekDateConverter{
                 return 86400*6 + weekDate.hours * 3600 + weekDate.minutes * 60 + weekDate.seconds
             default:
                 return -1
+        }
+    }
+
+    getPolishNameOfTheWeekDay(day: Day){
+        switch (day) {
+            case Day.MONDAY:
+                return 'Poniedziałek'
+            case Day.TUESDAY:
+                return 'Wtorek'
+            case Day.WEDNESDAY:
+                return 'Środa'
+            case Day.THURSDAY:
+                return 'Czwartek'
+            case Day.FRIDAY:
+                return 'Piątek'
+            case Day.SATURDAY:
+                return 'Sobota'
+            case Day.SUNDAY:
+                return 'Niedziela'
         }
     }
 

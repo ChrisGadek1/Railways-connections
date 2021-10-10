@@ -1,3 +1,9 @@
+a{
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+}
+
 .station-component{
     display: inline-block;
     text-align: center;

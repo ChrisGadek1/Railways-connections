@@ -44,6 +44,13 @@ const testData = [
         hours: 23,
         minutes: 59,
         sec: 59
+    },
+    {
+        seconds: 709599,
+        day: Day.TUESDAY,
+        hours: 5,
+        minutes: 6,
+        sec: 39
     }
 ]
 
@@ -58,11 +65,12 @@ it("converts correctly seconds to WeekDate object", async () => {
     })
 })
 
-it("converts correctly seconds to WeekDate object", async () => {
+it("converts correctly WeekDate object to seconds", async () => {
     const weekDateConverter = new WeekDateConverter();
     testData.forEach((data:{seconds: number, day: Day, hours: number, minutes: number}) => {
         const convertedDate = weekDateConverter.convert(data.seconds);
         const convertedDateToSeconds = weekDateConverter.convertToSeconds(convertedDate);
+        data.seconds %= 604800
         expect(convertedDateToSeconds).toEqual(data.seconds);
     })
 })

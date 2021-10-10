@@ -1,0 +1,47 @@
+.line-wrapper{
+    margin-left: 10%;
+    text-align: left;
+}
+
+.span-station-name{
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.stations-details-line{
+    margin: 20px;
+}
+
+.current-station{
+    background-color: #333333;
+    color: #dbdbdb;
+    border-radius: 5px;
+}
+
+.show-hours-icon:hover{
+    cursor: pointer;
+}
+
+.show-hours-icon{
+    display: inline-block;
+    margin: 20px 8px 20px 8px;
+}
+
+.show-hours-icon + div{
+    overflow: hidden;
+    height: 0;
+}
+
+.show-content{
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+.hide-content{
+    transform: rotate(0);
+    transition: 0.3s;
+}
+
+.icons-hours-wrapper{
+    display: inline-block;
+}

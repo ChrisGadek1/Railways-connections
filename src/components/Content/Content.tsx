@@ -7,6 +7,7 @@ import ConnectionChoosingWrapper from "../ConnectionChoosingWrapper/ConnectionCh
 import {useDispatch} from "react-redux";
 import DataProvider from "../../services/dataProvider/DataProvider";
 import {loadData} from "../../actions/dataProviderActions";
+import StationDetails from "../StationDetails/StationDetails";
 
 const Content = () => {
 
@@ -17,8 +18,9 @@ const Content = () => {
         dataProvider.fetchData().then((data:any) => {
             const stations = data.stations;
             const lines = data.lines;
+            const speed = data.speed;
 
-            dispatch(loadData({stations, lines}))
+            dispatch(loadData({stations, lines, speed}))
         })
 
 
@@ -28,9 +30,9 @@ const Content = () => {
     return(
         <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route path="/przystanki" component={TrainStationWrapper} />
-            <Route path="/linie" component={TrainChoosingWrapper} />
-            <Route path="/znajdz-trase" component={ConnectionChoosingWrapper} />
+            <Route exact path="/przystanki" component={TrainStationWrapper} />
+            <Route exact path="/linie" component={TrainChoosingWrapper} />
+            <Route exact path="/znajdz-trase" component={ConnectionChoosingWrapper} />
         </Switch>
     )
 }

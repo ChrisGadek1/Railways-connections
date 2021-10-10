@@ -1,4 +1,5 @@
 import Day from "../enums/Day";
+import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 
 export default class WeekDate {
     get seconds(): number {
@@ -17,6 +18,27 @@ export default class WeekDate {
         return this._minutes;
     }
 
+    public hoursString():string{
+        return this._hours < 10 ? "0"+this._hours : this._hours.toString()
+    }
+
+    public minutesString():string{
+        return this._minutes < 10 ? "0"+this._minutes : this._minutes.toString()
+    }
+
+    public secondsString():string{
+        return this._seconds < 10 ? "0"+this._seconds : this._seconds.toString()
+    }
+
+    addTime(seconds: number){
+        const weekDateConverter = new WeekDateConverter();
+        const newWeekDate = weekDateConverter.convert(weekDateConverter.convertToSeconds(this) + seconds);
+        this._hours = newWeekDate.hours;
+        this._seconds = newWeekDate.seconds;
+        this._weekDay = newWeekDate.weekDay;
+        this._minutes = newWeekDate.minutes
+    }
+
     constructor(weekDay: Day, hours: number, minutes: number, seconds: number) {
         this._weekDay = weekDay;
         this._hours = hours;
@@ -24,8 +46,8 @@ export default class WeekDate {
         this._seconds = seconds;
     }
 
-    private readonly _seconds: number;
-    private readonly _weekDay: Day;
-    private readonly _hours: number;
-    private readonly _minutes: number;
+    private _seconds: number;
+    private _weekDay: Day;
+    private _hours: number;
+    private _minutes: number;
 }
