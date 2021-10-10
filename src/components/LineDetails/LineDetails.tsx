@@ -8,6 +8,8 @@ import StationMap from "../StationMap/StationMap";
 import StationDetailsLinesWrapper from "../StationDetailsLinesWrapper/StationDetailsLinesWrapper";
 import Line from "../../data/classes/Line";
 import LineMap from "../LineMap/LineMap";
+import LineDetailsStationsWrapper from "../LineDetailsStationsWrapper/LineDetailsStationsWrapper";
+import StationDeparturesTimes from "../StationDeparturesTimes/StationDeparturesTimes";
 
 type LineParams = {
     name: string;
@@ -51,9 +53,18 @@ const LineDetails = () => {
                             <h2>Szczegóły na temat wybranej linii: {line.name}</h2>
                             <LineMap line={line}/>
                         </section>
-                        <div className="line-stations-container">
-                            <h2>Odjazdy pociągów</h2>
-                        </div>
+                        <section className="line-stations-container">
+                            <h2>Przystanki (w kolejności przejazdu):</h2>
+                            <LineDetailsStationsWrapper line={line}/>
+                            <hr />
+                            <h2>Godziny odjazdów:</h2>
+                            <h3><i className="icon-train"></i>Kierunek: {line.end.name} </h3>
+                            <h3>Stacja początkowa: {line.begin.name}</h3>
+                            <StationDeparturesTimes station={line.stations[0]} line={line} reversed={false} />
+                            <h3><i className="icon-train"></i>Kierunek: {line.begin.name} </h3>
+                            <h3>Stacja początkowa: {line.end.name}</h3>
+                            <StationDeparturesTimes station={line.stations[0]} line={line} reversed={true} />
+                        </section>
                     </div>
                 </div>
             </>
