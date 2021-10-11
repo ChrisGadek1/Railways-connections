@@ -1,0 +1,15 @@
+.station-for-connection-choosing{
+    margin: 30px auto 30px auto;
+}
+
+@media (min-width: 900px) {
+    .station-for-connection-choosing{
+        width: 80%;
+    }
+}
+
+@media (max-width: 899px) {
+    .station-for-connection-choosing{
+        width: 95%;
+    }
+}
