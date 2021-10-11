@@ -38,6 +38,14 @@ export default class WeekDateConverter{
         return new WeekDate(day, hours, minutes, secondsComputed)
     }
 
+    convertFromDate(date: Date): WeekDate{
+        const seconds = date.getSeconds();
+        const minutes = date.getMinutes();
+        const hours = date.getHours();
+        const weekDay = (date.getDay() - 1) % 7;
+        return new WeekDate(weekDay,hours,minutes,seconds);
+    }
+
     convertToSeconds(weekDate: WeekDate){
         switch (weekDate.weekDay){
             case Day.MONDAY:

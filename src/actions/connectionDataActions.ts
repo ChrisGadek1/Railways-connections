@@ -36,10 +36,10 @@ export const removeEndStation = () => {
     }
 }
 
-export const addDepartureTime = (weekDate: WeekDate) => {
+export const addDepartureTime = (date: Date) => {
     return{
         type: ADD_DEPARTURE_TIME,
-        payload: weekDate
+        payload: date
     }
 }
 

@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import ChooseStationsForConnection from "../ChooseStationsForConnection/ChooseStationsForConnection";
 import {
-    addBeginStation,
+    addBeginStation, addDepartureTime,
     addEndStation,
-    removeBeginStation,
+    removeBeginStation, removeDepartureTime,
     removeEndStation
 } from "../../actions/connectionDataActions";
 import './ConnectionsDataChoosing.css'
@@ -19,11 +19,21 @@ import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
 
 const ConnectionsDataChoosing = () => {
 
-    const [date, setDate] = useState(new Date())
-
     const dispatcher = useDispatch();
     const beginStation: Station = useSelector((state:RootState) => state.connection.beginStation)
     const endStation: Station = useSelector((state:RootState) => state.connection.endStation)
+    const departureTime: Date = useSelector((state: RootState) => state.connection.departureTime);
+
+    useEffect(() => {
+        if(departureTime === null){
+            dispatcher(addDepartureTime(new Date()));
+        }
+        return () => {
+            dispatcher(removeBeginStation())
+            dispatcher(removeDepartureTime());
+            dispatcher(removeEndStation());
+        }
+    }, [])
 
     const handleExchangeClick = () => {
         dispatcher(removeBeginStation());
@@ -34,7 +44,9 @@ const ConnectionsDataChoosing = () => {
 
     const handleDateChange = (dateFromPicker: MaterialUiPickersDate) => {
         if(dateFromPicker !== null){
-            setDate(dateFromPicker)
+            console.log(departureTime)
+            dispatcher(removeDepartureTime())
+            dispatcher(addDepartureTime(dateFromPicker));
         }
 
     }
@@ -59,14 +71,14 @@ const ConnectionsDataChoosing = () => {
             <div className="departure-time-pickers">
                 <div>
                     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pl}>
-                        <DatePicker value={date}
+                        <DatePicker value={departureTime}
                                     label="Wybierz dzień"
                                     onChange={handleDateChange}/>
                     </MuiPickersUtilsProvider>
                 </div>
                 <div>
                     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pl}>
-                        <TimePicker value={date}
+                        <TimePicker value={departureTime}
                                     label="Wybierz godzinę"
                                     ampm={false}
                                     onChange={handleDateChange}
