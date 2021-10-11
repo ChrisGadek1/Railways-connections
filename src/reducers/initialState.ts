@@ -1,4 +1,5 @@
 import Station from "../data/classes/Station";
+import WeekDate from "../data/classes/WeekDate";
 
 const initialState = {
     data: {
@@ -7,6 +8,10 @@ const initialState = {
     },
     mobileAnimation: false,
     selectedStations: [],
-    selectedLines: []
+    selectedLines: [],
+    beginStation: null,
+    endStation: null,
+    departureTime: null
+
 }
 export default initialState;
