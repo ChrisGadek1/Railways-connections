@@ -8,7 +8,8 @@ import './ChooseStationsForConnection.css'
 type propsType = {
     removeAction: any
     addAction: any,
-    placeholder: string
+    placeholder: string,
+    propName: string
 }
 
 type Option = {
@@ -21,10 +22,13 @@ const ChooseStationsForConnection = (props: propsType) => {
 
     const dispatcher = useDispatch()
     const stations: Station[] = useSelector((state:RootState) => state.data.data.stations);
+    //@ts-ignore
+    const currentStation: Station | null = useSelector((state:RootState) => state.connection[props.propName]);
     const stationsOptions = stations.map((station: Station): Option => ({
         value: station.id.toString(),
         label: station.name
     }))
+    const currentValue: Option | null = currentStation === null ? null : {label: currentStation.name, value: currentStation.id.toString()}
 
     const handleChange = (option: Option | null) => {
         if(option !== null){
@@ -43,6 +47,7 @@ const ChooseStationsForConnection = (props: propsType) => {
                 options={stationsOptions}
                 placeholder={props.placeholder}
                 onChange={handleChange}
+                value={currentValue}
             />
         </div>
 

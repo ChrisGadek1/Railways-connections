@@ -6,3 +6,32 @@
     box-shadow: 0px 0px 3px 0 #000;
     width: 85%;
 }
+
+.connections-data-choosing .exchange-div{
+    font-size: 25px;
+    transition: 0.2s;
+    padding: 3px;
+    border-radius: 5px;
+    transform: rotate(90deg);
+}
+
+.connections-data-choosing .exchange-div:hover{
+    cursor: pointer;
+    background-color: #8f8f8f;
+    transition: 0.2s;
+}
+
+@media (min-width: 900px) {
+    .connections-data-choosing .exchange-div{
+        margin-left: 10%;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 899px) {
+    .connections-data-choosing .exchange-div{
+        margin-left: 2.5%;
+        display: inline-block;
+    }
+}
+
