@@ -21,10 +21,24 @@
     transition: 0.2s;
 }
 
+.departure-time-pickers{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px auto 15px auto;
+}
+
+.departure-time-pickers > div{
+    display: inline-block;
+}
+
 @media (min-width: 900px) {
     .connections-data-choosing .exchange-div{
         margin-left: 10%;
         display: inline-block;
+    }
+
+    .departure-time-pickers{
+        width: 80%;
     }
 }
 
@@ -32,6 +46,9 @@
     .connections-data-choosing .exchange-div{
         margin-left: 2.5%;
         display: inline-block;
+    }
+    .departure-time-pickers{
+        width: 95%;
     }
 }
 

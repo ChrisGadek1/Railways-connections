@@ -8,18 +8,20 @@ import Content from "../Content/Content";
 import {BrowserRouter} from "react-router-dom";
 import PopupWrapper from "../PopupWrapper/PopupWrapper";
 
+
 function App() {
 
     return (
-        <Provider store={store}>
-            <div className="App" data-testid="app">
-                <BrowserRouter>
-                    <Nav/>
-                    <Content/>
-                    <PopupWrapper />
-                </BrowserRouter>
-            </div>
-        </Provider>
+            <Provider store={store}>
+                <div className="App" data-testid="app">
+                    <BrowserRouter>
+                        <Nav/>
+                        <Content/>
+                        <PopupWrapper />
+                    </BrowserRouter>
+                </div>
+            </Provider>
+
 
   );
 }

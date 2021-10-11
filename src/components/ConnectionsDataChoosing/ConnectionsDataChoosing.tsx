@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ChooseStationsForConnection from "../ChooseStationsForConnection/ChooseStationsForConnection";
 import {
     addBeginStation,
@@ -10,8 +10,16 @@ import './ConnectionsDataChoosing.css'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Station from "../../data/classes/Station";
+import {DatePicker, MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
+import {pl} from 'date-fns/locale'
+import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
+
+
 
 const ConnectionsDataChoosing = () => {
+
+    const [date, setDate] = useState(new Date())
 
     const dispatcher = useDispatch();
     const beginStation: Station = useSelector((state:RootState) => state.connection.beginStation)
@@ -22,6 +30,13 @@ const ConnectionsDataChoosing = () => {
         dispatcher(removeEndStation());
         dispatcher(addBeginStation(endStation));
         dispatcher(addEndStation(beginStation));
+    }
+
+    const handleDateChange = (dateFromPicker: MaterialUiPickersDate) => {
+        if(dateFromPicker !== null){
+            setDate(dateFromPicker)
+        }
+
     }
 
     return(
@@ -41,6 +56,27 @@ const ConnectionsDataChoosing = () => {
                 placeholder={"Wybierz stację końcową..."}
                 propName={"endStation"}
             />
+            <div className="departure-time-pickers">
+                <div>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pl}>
+                        <DatePicker value={date}
+                                    label="Wybierz dzień"
+                                    onChange={handleDateChange}/>
+                    </MuiPickersUtilsProvider>
+                </div>
+                <div>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pl}>
+                        <TimePicker value={date}
+                                    label="Wybierz godzinę"
+                                    ampm={false}
+                                    onChange={handleDateChange}
+                        />
+                    </MuiPickersUtilsProvider>
+                </div>
+            </div>
+
+
+
         </div>
     )
 }
