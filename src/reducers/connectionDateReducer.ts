@@ -40,6 +40,8 @@ const connectionDataReducer =  (state:typeof initialState = initialState, action
                 ...state,
                 departureTime: null
             }
+        default:
+            return state
     }
 }
 
