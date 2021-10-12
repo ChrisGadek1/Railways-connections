@@ -1,23 +1,21 @@
 import GraphNode from "./GraphNode";
 
 export default class GraphEdge{
-    private _cost: number;
+    private _cost: number|undefined = undefined;
     private readonly _destination: GraphNode;
     private readonly _source: GraphNode;
 
 
-    constructor(cost: number, destination: GraphNode, source: GraphNode) {
-        this._cost = cost;
+    constructor(destination: GraphNode, source: GraphNode) {
         this._destination = destination;
         this._source = source;
     }
 
-
-    get cost(): number {
+    get cost(): number|undefined {
         return this._cost;
     }
 
-    set cost(value: number) {
+    set cost(value: number|undefined) {
         this._cost = value;
     }
 

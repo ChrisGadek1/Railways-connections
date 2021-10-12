@@ -5,17 +5,21 @@ import GraphEdge from "./GraphEdge";
 export default class GraphNode{
     private _station: Station;
     private _line: Line;
-    private _neighbours: GraphEdge[];
+    private _neighbours: GraphEdge[] = [];
     private _visited: boolean;
+    private readonly _reversed: boolean
 
 
-    constructor(station: Station, line: Line, neighbours: GraphEdge[], visited: boolean) {
+    constructor(station: Station, line: Line, visited: boolean, reversed: boolean) {
         this._station = station;
         this._line = line;
-        this._neighbours = neighbours;
         this._visited = visited;
+        this._reversed = reversed;
     }
 
+    get reversed(): boolean{
+        return this._reversed
+    }
 
     get station(): Station {
         return this._station;
