@@ -34,31 +34,37 @@ export default class Graph{
             }).flat(1)
         }).flat(1).sort((a, b) => a.station.id - b.station.id)
         let sameStationNodes: GraphNode[] = []
-        for (let i = 0; i < nodes.length; i++) {
-            if (i > 0 && nodes[i].station.id !== nodes[i - 1].station.id) {
-                sameStationNodes.forEach(nodeFirstIter => {
-                    sameStationNodes.forEach(nodeSecondIter => {
-                        const edge1: GraphEdge = new GraphEdge(nodeFirstIter, nodeSecondIter);
-                        const edge2: GraphEdge = new GraphEdge(nodeSecondIter, nodeFirstIter);
-                        nodeSecondIter.addNeighbour(edge1);
-                        nodeFirstIter.addNeighbour(edge2);
+        for (let i = 0; i <= nodes.length; i++) {
+            if (i > 0 && (i === nodes.length || (nodes[i].station.id !== nodes[i - 1].station.id))) {
+                sameStationNodes.forEach((nodeFirstIter, firstIndex) => {
+                    sameStationNodes.forEach((nodeSecondIter, secondIndex) => {
+                        if(secondIndex > firstIndex){
+                            const edge1: GraphEdge = new GraphEdge(nodeFirstIter, nodeSecondIter);
+                            const edge2: GraphEdge = new GraphEdge(nodeSecondIter, nodeFirstIter);
+                            nodeSecondIter.addNeighbour(edge1);
+                            nodeFirstIter.addNeighbour(edge2);
+                        }
                     })
                 })
                 sameStationNodes = []
-            } else {
-                sameStationNodes.push(nodes[i])
             }
+            sameStationNodes.push(nodes[i])
         }
         nodes.sort((a, b) => a.station.stationNumber(a.line) - b.station.stationNumber(b.line))
             .sort((a, b) => (a.line.name > b.line.name) ? 1: (b.line.name > a.line.name ? -1: 0))
-        for(let index = 0; index < nodes.length; index++){
-            if(index < nodes.length - 1 && nodes[index].line.name === nodes[index + 1].line.name){
-                const edge1: GraphEdge = new GraphEdge(nodes[index], nodes[index + 1]);
-                const edge2: GraphEdge = new GraphEdge(nodes[index + 1], nodes[index]);
-                nodes[index + 1].addNeighbour(edge1);
+        for(let index = 0; index < nodes.length; index+=2){
+            if(index < nodes.length - 2 && nodes[index].line.name === nodes[index + 2].line.name){
+                const edge2: GraphEdge = new GraphEdge(nodes[index + 2], nodes[index]);
                 nodes[index].addNeighbour(edge2);
             }
         }
+        for(let index = nodes.length - 1; index >= 2;index -= 2){
+            if(nodes[index].line.name === nodes[index - 2].line.name){
+                const edge2: GraphEdge = new GraphEdge(nodes[index - 2], nodes[index]);
+                nodes[index].addNeighbour(edge2);
+            }
+        }
+        console.log(nodes.map(node => node.station.name+" "+node.line.name+" "+node.reversed+" "+node.neighbours.map(nei => nei.destination.station.name+" "+nei.destination.line.name+" "+nei.destination.reversed)))
         this._nodes = nodes;
     }
 

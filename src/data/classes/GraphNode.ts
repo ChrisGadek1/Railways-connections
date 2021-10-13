@@ -1,11 +1,13 @@
 import Station from "./Station";
 import Line from "./Line";
 import GraphEdge from "./GraphEdge";
+import WeekDate from "./WeekDate";
 
 export default class GraphNode{
     private _station: Station;
     private _line: Line;
     private _neighbours: GraphEdge[] = [];
+    private _weekDate: WeekDate = new WeekDate(0,0,0,0);
     private _visited: boolean;
     private readonly _reversed: boolean
 
@@ -15,6 +17,14 @@ export default class GraphNode{
         this._line = line;
         this._visited = visited;
         this._reversed = reversed;
+    }
+
+    get weekDate(): WeekDate {
+        return this._weekDate;
+    }
+
+    set weekDate(value: WeekDate) {
+        this._weekDate = value;
     }
 
     get reversed(): boolean{
