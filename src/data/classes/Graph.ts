@@ -2,10 +2,13 @@ import Line from "./Line";
 import WeekDate from "./WeekDate";
 import GraphNode from "./GraphNode";
 import GraphEdge from "./GraphEdge";
+import Station from "./Station";
 
 export default class Graph{
     private readonly _lines: Line[];
     private readonly _time: WeekDate;
+    private beginStation: Station|undefined = undefined;
+    private destinationStation: Station|undefined = undefined;
     private _nodes: GraphNode[] = [];
 
 
@@ -33,6 +36,7 @@ export default class Graph{
                 return [new GraphNode(station, line, false, false), new GraphNode(station, line, false, true)];
             }).flat(1)
         }).flat(1).sort((a, b) => a.station.id - b.station.id)
+        //add connection between same stations, but different direction/line
         let sameStationNodes: GraphNode[] = []
         for (let i = 0; i <= nodes.length; i++) {
             if (i > 0 && (i === nodes.length || (nodes[i].station.id !== nodes[i - 1].station.id))) {
@@ -52,6 +56,7 @@ export default class Graph{
         }
         nodes.sort((a, b) => a.station.stationNumber(a.line) - b.station.stationNumber(b.line))
             .sort((a, b) => (a.line.name > b.line.name) ? 1: (b.line.name > a.line.name ? -1: 0))
+        //add connections between stations on the same line
         for(let index = 0; index < nodes.length; index+=2){
             if(index < nodes.length - 2 && nodes[index].line.name === nodes[index + 2].line.name){
                 const edge2: GraphEdge = new GraphEdge(nodes[index + 2], nodes[index]);
@@ -64,8 +69,18 @@ export default class Graph{
                 nodes[index].addNeighbour(edge2);
             }
         }
-        console.log(nodes.map(node => node.station.name+" "+node.line.name+" "+node.reversed+" "+node.neighbours.map(nei => nei.destination.station.name+" "+nei.destination.line.name+" "+nei.destination.reversed)))
         this._nodes = nodes;
+    }
+
+    setDestinationAndBeginning(begin: Station, end: Station){
+        this.beginStation = begin;
+        this.destinationStation = end;
+    }
+
+    addCosts(){
+        if(this.destinationStation !== undefined && this.beginStation !== undefined){
+
+        }
     }
 
 }
