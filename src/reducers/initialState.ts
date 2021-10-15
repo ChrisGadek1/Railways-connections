@@ -4,7 +4,8 @@ import WeekDate from "../data/classes/WeekDate";
 const initialState = {
     data: {
         stations: [],
-        lines: []
+        lines: [],
+        speed: null
     },
     mobileAnimation: false,
     selectedStations: [],
