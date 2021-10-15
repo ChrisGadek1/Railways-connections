@@ -46,7 +46,10 @@ export default class WeekDateConverter{
         return new WeekDate(weekDay,hours,minutes,seconds);
     }
 
-    convertToSeconds(weekDate: WeekDate){
+    convertToSeconds(weekDate: WeekDate|undefined){
+        if(weekDate === undefined){
+            return Infinity;
+        }
         switch (weekDate.weekDay){
             case Day.MONDAY:
                 return 86400*0 + weekDate.hours * 3600 + weekDate.minutes * 60 + weekDate.seconds

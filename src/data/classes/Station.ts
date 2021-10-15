@@ -1,4 +1,12 @@
+import Line from "./Line";
+
 export default class Station {
+    public stationNumber(line: Line){
+        const result = line.stations.indexOf(this);
+        //console.log(result+" "+line.name+" "+this._name);
+        return result;
+    }
+
     get id(): number {
         return this._id;
     }
