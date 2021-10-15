@@ -125,6 +125,86 @@ it("creates valid graph based on three lines", async () => {
     }
 })
 
+const testConnections = [
+    {
+        beginStation: "Jaroszowiec",
+        endStation: "Zawada",
+        time: 123456,
+        path: [
+            {
+                station: "Jaroszowiec",
+                line: "AWK",
+                time: 127214
+            },
+            {
+                station: "Bogucin Wielki",
+                line: "AWK",
+                time: 127547
+            },
+            {
+                station: "Bogucin Mały",
+                line: "AWK",
+                time: 127941
+            },
+            {
+                station: "Bogucin Mały",
+                line: "WK",
+                time: 131370
+            },
+            {
+                station: "Olkusz Pomorzany",
+                line: "WK",
+                time: 131986
+            },
+            {
+                station: "Olkusz Os. Młodych",
+                line: "WK",
+                time: 132640
+            },
+            {
+                station: "Witeradów",
+                line: "WK",
+                time: 132961
+            },
+            {
+                station: "Osiek Centralny",
+                line: "WK",
+                time: 133320
+            },
+            {
+                station: "Zimnodół",
+                line: "WK",
+                time: 133592
+            },
+            {
+                station: "Zederman Zachodni",
+                line: "WK",
+                time: 134005
+            },
+            {
+                station: "Zederman Centralny",
+                line: "WK",
+                time: 134307
+            },
+            {
+                station: "Przeginia",
+                line: "WK",
+                time: 134654
+            },
+            {
+                station: "Przeginia",
+                line: "ML",
+                time: 137507
+            },
+            {
+                station: "Zawada",
+                line: "ML",
+                time: 138216
+            }
+        ]
+    }
+]
+
 it("computes fastest connection between stations", async () => {
     mockedAxios.all.mockRejectedValue('Network error: Something went wrong');
     mockedAxios.all.mockResolvedValue([{data: {"stations":validStations.stations}}, {data: {"lines":validLines.lines}}]);
@@ -133,14 +213,21 @@ it("computes fastest connection between stations", async () => {
     const weekDateConverter = new WeekDateConverter()
     const data:{stations: Station[], lines: Line[]} = await dataProvider.fetchData();
 
-    const graph = new Graph(data.lines, weekDateConverter.convert(123456), validLines.speed);
-    const beginStation = data.stations.find(station => station.id === 23);
-    const endStation = data.stations.find(station => station.id === 22)
-    if(beginStation !== undefined && endStation !== undefined){
-        console.log(graph.nodes.map(node => node.neighbours.map(nei => {
-            return nei.source.station.name+" "+nei.destination.station.name+" "+nei.destination.line.name
-        })))
+    testConnections.forEach(connection => {
+        const graph = new Graph(data.lines, weekDateConverter.convert(connection.time), validLines.speed);
+        const beginStation = data.stations.find(station => station.name === connection.beginStation);
+        const endStation = data.stations.find(station => station.name === connection.endStation)
+        if(beginStation !== undefined && endStation !== undefined){
+            graph.setDestinationAndBeginning(beginStation, endStation);
+            graph.computeBestTime()
+            const fastestPath = graph.getFastestPath()
+            connection.path.forEach((node, index) => {
+                expect(node.station).toEqual(fastestPath[fastestPath.length - index - 1].station.name)
+                expect(node.line).toEqual(fastestPath[fastestPath.length - index - 1].line.name)
+                expect(node.time).toEqual(fastestPath[fastestPath.length - index - 1].getTime())
+            })
+        }
+    })
 
-    }
 
 })

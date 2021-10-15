@@ -10,6 +10,10 @@ export default class GraphNode extends Node{
     private _previous_node: GraphNode|undefined;
     private readonly _reversed: boolean
 
+    public toString(){
+        const line = this._line !== undefined ? this._line.name : "currentLine"
+        return this.station.name+line+this.reversed
+    }
 
     constructor(station: Station, line: Line|undefined, visited: boolean, reversed: boolean) {
         super(visited, station);

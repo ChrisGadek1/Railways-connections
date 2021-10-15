@@ -1,8 +1,14 @@
-export class PriorityQueue<T>{
+export class PriorityQueue<T extends Object>{
 
     // (a: child, b: parent)
     private readonly _comparator: (a: T, b: T) => boolean;
     private _queue: T[] = [];
+    private heapMap: any = {}
+    
+    public indexOf(n: T){
+        const result = this.heapMap[n.toString()];
+        return result
+    }
 
     public size(){
         return this._queue.length;
@@ -73,12 +79,28 @@ export class PriorityQueue<T>{
 
     public push(n: T){
         this._queue.push(n);
-        let index = this.size() - 1;
-        while(index > 0 && this._comparator(this._queue[index],this._queue[this.parent(index)])){
+        this.heapMap[n.toString()] = this._queue.length - 1
+        this.repairHeap(this._queue.length - 1)
+    }
+
+    public repairHeap(index: number) {
+        let biggest = this.heapCondition(index)
+        while(!this.isLeaf(index) && biggest !== index){
+            [this._queue[biggest], this._queue[index]] = [this._queue[index], this._queue[biggest]];
+            this.heapMap[this._queue[biggest].toString()] = index;
+            this.heapMap[this._queue[index].toString()] = biggest;
+            index = biggest;
+            biggest = this.heapCondition(index);
+        }
+        while(index > 0 && index < this._queue.length && this._comparator(this._queue[index],this._queue[this.parent(index)])){
             [this._queue[this.parent(index)], this._queue[index]] = [this._queue[index], this._queue[this.parent(index)]];
+            this.heapMap[this._queue[this.parent(index)].toString()] = index;
+            this.heapMap[this._queue[index].toString()] = this.parent(index);
             index = this.parent(index);
         }
     }
+
+
 
     public pop(){
         if(this.size() === 0){
@@ -86,14 +108,10 @@ export class PriorityQueue<T>{
         }
         const result = this._queue[0];
         this._queue[0] = this._queue[this.size() - 1];
+        this.heapMap[this._queue[0].toString()] = 0
+        delete this.heapMap[this._queue.length - 1]
         this._queue.pop();
-        let index = 0;
-        let biggest = this.heapCondition(index)
-        while(!this.isLeaf(index) && biggest !== index){
-            [this._queue[biggest], this._queue[index]] = [this._queue[index], this._queue[biggest]];
-            index = biggest;
-            biggest = this.heapCondition(index);
-        }
+        this.repairHeap(0)
         return result;
     }
 

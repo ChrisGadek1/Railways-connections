@@ -5,6 +5,7 @@ import GraphEdge from "./GraphEdge";
 import Station from "./Station";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 import TrainTimeComputer from "../../services/trainTimeComputer/TrainTimeComputer";
+import {PriorityQueue} from "./PriorityQueue";
 
 export default class Graph{
     private readonly _lines: Line[];
@@ -87,18 +88,51 @@ export default class Graph{
 
     computeBestTime(){
         if(this.destinationStation !== undefined && this.beginStation !== undefined) {
-
+            const weekDateConverter = new WeekDateConverter();
+            this._nodes.forEach(node => {
+                node.previous_node = undefined;
+                node.weekDate = undefined;
+                node.visited = false;
+            })
+            const firstNode = new GraphNode(this.beginStation, undefined,false, false);
+            firstNode.weekDate = this._time
+            this.loadBeginNeighbours(firstNode);
+            const queue = new PriorityQueue<GraphNode>((a,b)=>a.getTime() < b.getTime())
+            queue.push(firstNode);
+            this._nodes.forEach(node => {
+                queue.push(node);
+            })
+            while (queue.size() > 0){
+                const node = queue.pop();
+                node.neighbours.forEach(neighbour => {
+                    const {destination} = neighbour
+                    if(!destination.visited){
+                        const currentCost = destination.getTime();
+                        const predictedCost = TrainTimeComputer.getTimeOfTheNextTrain(weekDateConverter.convert(node.getTime()), destination.station,destination.line,destination.reversed,this.speed);
+                        if(currentCost > predictedCost){
+                            destination.weekDate = weekDateConverter.convert(predictedCost);
+                            destination.previous_node = node;
+                            queue.repairHeap(queue.indexOf(destination));
+                        }
+                    }
+                })
+                node.visited = true
+            }
         }
     }
 
-    getFastestPath(){
+    getFastestPath(): GraphNode[]{
         const dest = this._nodes.filter(node => node.station.name === this.destinationStation?.name && node.weekDate !== undefined)
-        const weekDateConverter = new WeekDateConverter();
-        //@ts-ignore
-        dest.sort((a,b) => weekDateConverter.convertToSeconds(a.weekDate) - weekDateConverter.convertToSeconds(b.weekDate))
+        dest.sort((a,b) => a.getTime() - b.getTime())
         let currentStation = dest[0];
+        const result: GraphNode[] = []
+        result.push(currentStation)
         while(currentStation.station !== this.beginStation){
-            console.log(currentStation.station.name)
+            if(currentStation.previous_node !== undefined){
+                currentStation = currentStation.previous_node
+            }
+            result.push(currentStation)
         }
+        return result;
     }
 }
