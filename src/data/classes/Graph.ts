@@ -3,6 +3,8 @@ import WeekDate from "./WeekDate";
 import GraphNode from "./GraphNode";
 import GraphEdge from "./GraphEdge";
 import Station from "./Station";
+import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
+import TrainTimeComputer from "../../services/trainTimeComputer/TrainTimeComputer";
 
 export default class Graph{
     private readonly _lines: Line[];
@@ -10,7 +12,7 @@ export default class Graph{
     private beginStation: Station|undefined = undefined;
     private destinationStation: Station|undefined = undefined;
     private _nodes: GraphNode[] = [];
-
+    private speed: number;
 
     get lines(): Line[] {
         return this._lines;
@@ -24,9 +26,10 @@ export default class Graph{
         return this._nodes;
     }
 
-    constructor(lines: Line[], time: WeekDate) {
+    constructor(lines: Line[], time: WeekDate, speed: number) {
         this._lines = lines;
         this._time = time;
+        this.speed = speed;
         this.createNodes()
     }
 
@@ -77,10 +80,25 @@ export default class Graph{
         this.destinationStation = end;
     }
 
-    addCosts(){
-        if(this.destinationStation !== undefined && this.beginStation !== undefined){
+    private loadBeginNeighbours(graphNode: GraphNode){
+        const filteredNodes = this._nodes.filter(node => node.station.name === graphNode.station.name);
+        graphNode.neighbours = filteredNodes.map(node => new GraphEdge(node, graphNode));
+    }
+
+    computeBestTime(){
+        if(this.destinationStation !== undefined && this.beginStation !== undefined) {
 
         }
     }
 
+    getFastestPath(){
+        const dest = this._nodes.filter(node => node.station.name === this.destinationStation?.name && node.weekDate !== undefined)
+        const weekDateConverter = new WeekDateConverter();
+        //@ts-ignore
+        dest.sort((a,b) => weekDateConverter.convertToSeconds(a.weekDate) - weekDateConverter.convertToSeconds(b.weekDate))
+        let currentStation = dest[0];
+        while(currentStation.station !== this.beginStation){
+            console.log(currentStation.station.name)
+        }
+    }
 }

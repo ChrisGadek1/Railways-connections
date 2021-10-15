@@ -1,12 +1,13 @@
 import GraphNode from "./GraphNode";
+import Node from "./Node";
 
 export default class GraphEdge{
     private _cost: number|undefined = undefined;
     private readonly _destination: GraphNode;
-    private readonly _source: GraphNode;
+    private readonly _source: Node;
 
 
-    constructor(destination: GraphNode, source: GraphNode) {
+    constructor(destination: GraphNode, source: Node) {
         this._destination = destination;
         this._source = source;
     }
@@ -23,7 +24,7 @@ export default class GraphEdge{
         return this._destination;
     }
 
-    get source(): GraphNode {
+    get source(): Node {
         return this._source;
     }
 }

@@ -2,28 +2,43 @@ import Station from "./Station";
 import Line from "./Line";
 import GraphEdge from "./GraphEdge";
 import WeekDate from "./WeekDate";
+import Node from "./Node";
 
-export default class GraphNode{
-    private _station: Station;
-    private _line: Line;
-    private _neighbours: GraphEdge[] = [];
-    private _weekDate: WeekDate = new WeekDate(0,0,0,0);
-    private _visited: boolean;
+export default class GraphNode extends Node{
+    private _line: Line|undefined;
+    private _weekDate: WeekDate|undefined;
+    private _previous_node: GraphNode|undefined;
     private readonly _reversed: boolean
 
 
-    constructor(station: Station, line: Line, visited: boolean, reversed: boolean) {
-        this._station = station;
+    constructor(station: Station, line: Line|undefined, visited: boolean, reversed: boolean) {
+        super(visited, station);
         this._line = line;
-        this._visited = visited;
         this._reversed = reversed;
     }
 
-    get weekDate(): WeekDate {
+    getTime(): number{
+        if(this.weekDate === undefined){
+            return Infinity
+        }
+        else{
+            return this.weekDate.convertToSeconds()
+        }
+    }
+
+    get previous_node(): GraphNode | undefined {
+        return this._previous_node;
+    }
+
+    set previous_node(value: GraphNode | undefined) {
+        this._previous_node = value;
+    }
+
+    get weekDate(): WeekDate|undefined {
         return this._weekDate;
     }
 
-    set weekDate(value: WeekDate) {
+    set weekDate(value: WeekDate|undefined) {
         this._weekDate = value;
     }
 
@@ -31,16 +46,14 @@ export default class GraphNode{
         return this._reversed
     }
 
-    get station(): Station {
-        return this._station;
-    }
-
-    set station(value: Station) {
-        this._station = value;
-    }
-
     get line(): Line {
-        return this._line;
+        if(this._line === undefined){
+            throw 'line is undefined'
+        }
+        else{
+            return this._line;
+        }
+
     }
 
     set line(value: Line) {
@@ -51,15 +64,4 @@ export default class GraphNode{
         this._neighbours.push(edge);
     }
 
-    get neighbours(): GraphEdge[] {
-        return this._neighbours;
-    }
-
-    get visited(): boolean {
-        return this._visited;
-    }
-
-    set visited(value: boolean) {
-        this._visited = value;
-    }
 }

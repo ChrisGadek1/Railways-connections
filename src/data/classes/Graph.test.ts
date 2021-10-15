@@ -5,7 +5,7 @@ import DataProvider from "../../services/dataProvider/DataProvider";
 import Station from "./Station";
 import Line from "./Line";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
-import GraphEdge from "./GraphEdge";
+import WeekDate from "./WeekDate";
 const validStations = require('../../__mocks__/stations.json')
 const validLines = require('../../__mocks__/lines.json')
 
@@ -20,7 +20,7 @@ it("creates valid graph based on one line", async () => {
     const weekDateConverter = new WeekDateConverter()
     const data:{stations: Station[], lines: Line[]} = await dataProvider.fetchData();
     const testLines: Line[] = data.lines.filter(line => line.name === 'AWK');
-    const graph = new Graph(testLines, weekDateConverter.convert(123456));
+    const graph = new Graph(testLines, weekDateConverter.convert(123456), validLines.speed);
     graph.nodes.forEach((node, index) => {
         if(index > 1 && index < graph.nodes.length - 2){
             expect(node.neighbours.length).toEqual(2)
@@ -29,7 +29,6 @@ it("creates valid graph based on one line", async () => {
             if(node.station.name === 'Jaroszowiec' && node.reversed || node.station.name == 'Gorenice Wschód' && !node.reversed){
                 expect(node.neighbours.length).toEqual(1)
                 expect(node.neighbours[0].destination.station.id).toEqual(node.neighbours[0].source.station.id)
-                expect(node.neighbours[0].source.reversed).toEqual(!node.neighbours[0].destination.reversed)
             }
 
         }
@@ -69,7 +68,7 @@ it("creates valid graph based on three lines", async () => {
     const weekDateConverter = new WeekDateConverter()
     const data:{stations: Station[], lines: Line[]} = await dataProvider.fetchData();
     const testLines: Line[] = data.lines.filter(line => line.name === 'AWK' || line.name === 'XML' || line.name === 'WK');
-    const graph = new Graph(testLines, weekDateConverter.convert(123456));
+    const graph = new Graph(testLines, weekDateConverter.convert(123456), validLines.speed);
     for(let index = 0; index < graph.nodes.length; index++){
         let crossingStation = crossingStations.find(obj => obj.stationID === graph.nodes[index].station.id);
         if(crossingStation !== undefined){
@@ -123,7 +122,24 @@ it("creates valid graph based on three lines", async () => {
                 expect(graph.nodes[index].neighbours.length).toEqual(2)
             }
         }
+    }
+})
 
+it("computes fastest connection between stations", async () => {
+    mockedAxios.all.mockRejectedValue('Network error: Something went wrong');
+    mockedAxios.all.mockResolvedValue([{data: {"stations":validStations.stations}}, {data: {"lines":validLines.lines}}]);
+
+    const dataProvider = DataProvider.getInstance();
+    const weekDateConverter = new WeekDateConverter()
+    const data:{stations: Station[], lines: Line[]} = await dataProvider.fetchData();
+
+    const graph = new Graph(data.lines, weekDateConverter.convert(123456), validLines.speed);
+    const beginStation = data.stations.find(station => station.id === 23);
+    const endStation = data.stations.find(station => station.id === 22)
+    if(beginStation !== undefined && endStation !== undefined){
+        console.log(graph.nodes.map(node => node.neighbours.map(nei => {
+            return nei.source.station.name+" "+nei.destination.station.name+" "+nei.destination.line.name
+        })))
 
     }
 

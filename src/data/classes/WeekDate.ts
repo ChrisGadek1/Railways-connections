@@ -2,6 +2,7 @@ import Day from "../enums/Day";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 
 export default class WeekDate {
+
     get seconds(): number {
         return this._seconds;
     }
@@ -28,6 +29,11 @@ export default class WeekDate {
 
     public secondsString():string{
         return this._seconds < 10 ? "0"+this._seconds : this._seconds.toString()
+    }
+
+    convertToSeconds(){
+        const weekDateConverter = new WeekDateConverter();
+        return weekDateConverter.convertToSeconds(this);
     }
 
     addTime(seconds: number){
