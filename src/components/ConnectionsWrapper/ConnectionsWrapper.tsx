@@ -6,7 +6,7 @@ import Line from "../../data/classes/Line";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 import Graph from "../../data/classes/Graph";
 import OneConnectionDetails from "../OneConnectionDetails/OneConnectionDetails";
-
+import Connection from "../Connection/Connection";
 
 const ConnectionsWrapper = () => {
 
@@ -16,15 +16,12 @@ const ConnectionsWrapper = () => {
     const lines: Line[] = useSelector((state: RootState) => state.data.data.lines);
     const speed: number = useSelector((state: RootState) => state.data.data.speed);
 
-    let currentTime = departureTime;
+    const weekDateConverter = new WeekDateConverter()
     const paths = []
-    console.log(beginStation)
-    console.log(endStation)
-    console.log(departureTime)
     if(departureTime !== null && beginStation !== null && endStation !== null){
+        let currentTime = weekDateConverter.convertFromDate(departureTime);
         for(let i = 0; i < 3; i++){
-            const weekDateConverter = new WeekDateConverter()
-            const graph: Graph = new Graph(lines, weekDateConverter.convertFromDate(currentTime), speed)
+            const graph: Graph = new Graph(lines, currentTime , speed)
             graph.setDestinationAndBeginning(beginStation, endStation)
             graph.computeBestTime()
             const result = graph.getFastestPath().reverse();
@@ -36,7 +33,8 @@ const ConnectionsWrapper = () => {
                 }))
             }
             //@ts-ignore
-            paths.push(<OneConnectionDetails key={i+path.path[i].station.name} path={path.path}/>)
+            paths.push(<Connection key={i+"path"} path={path.path}/>)
+            currentTime = weekDateConverter.convert(path.path[0].time)
         }
     }
 

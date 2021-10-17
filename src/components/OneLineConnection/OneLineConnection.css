@@ -1,0 +1,26 @@
+.one-line-connection-inner{
+    padding: 15px 5px 5px 5px;
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: left;
+    gap: 20px;
+    overflow-x: scroll;
+}
+
+.one-line-connection{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 30px auto 30px auto;
+}
+
+@media (min-width: 900px) {
+    .one-line-connection{
+        width: 80vw;
+    }
+}
+
+@media (max-width: 899px) {
+    .one-line-connection{
+        width: 90vw;
+    }
+}
