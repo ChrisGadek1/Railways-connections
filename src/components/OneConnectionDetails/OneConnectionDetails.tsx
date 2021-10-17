@@ -10,18 +10,20 @@ type propsType = {
             line: Line,
             time: number
         }
-    ]
+    ],
+    colors: string[]
 }
 
 const OneConnectionDetails = (props: propsType) => {
     const lines = []
+    const colors = props.colors
     let currentLines = []
-    let colors = ['#c8c7f0','#ebeba7','#ccf0c7','#f2a083']
+    let colorIndex = 0;
     for(let i = 0; i < props.path.length; i++){
         currentLines.push(props.path[i])
         if( i === props.path.length - 1 || props.path[i].line.name !== props.path[i + 1].line.name){
             //@ts-ignore
-            lines.push(<OneLineConnection line={props.path[i].line} key={props.path[i].line+Math.random()} color={colors.pop()} path={currentLines}/>)
+            lines.push(<OneLineConnection line={props.path[i].line} key={props.path[i].line+Math.random()} color={colors[colorIndex++]} path={currentLines}/>)
             currentLines = []
         }
     }

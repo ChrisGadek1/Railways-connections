@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Line from "../../data/classes/Line";
 import OneConnectionDetails from "../OneConnectionDetails/OneConnectionDetails";
+import ConnectionMap from "../ConnectionMap/ConnectionMap";
 
 type propsType = {
     path: [
@@ -18,12 +19,11 @@ type propsType = {
 }
 
 const ConnectionDetails = () => {
-
+    let colors = ['#c8c7f0','#ebeba7','#ccf0c7','#f2a083']
     const { stations } : any = useParams();
     const stationsFromState: Station[] = useSelector((state: RootState) => state.data.data.stations);
     const linesFromState: Line[] = useSelector((state: RootState) => state.data.data.lines);
     const stringDataFromParams = stations.split("-");
-    console.log(stringDataFromParams)
     const path = []
     for(let i = 0; i < stringDataFromParams.length - 2; i+=3){
         const lineName = stringDataFromParams[i]
@@ -35,7 +35,6 @@ const ConnectionDetails = () => {
             time: time
         })
     }
-    console.log(path)
 
     const propsFromParams: propsType = ({
         //@ts-ignore
@@ -45,7 +44,9 @@ const ConnectionDetails = () => {
     return(
         <div className="connection-details">
             {/*@ts-ignore*/}
-            <OneConnectionDetails path={path}/>
+            <ConnectionMap path={path} />
+            {/*@ts-ignore*/}
+            <OneConnectionDetails path={path} colors={colors}/>
         </div>
     )
 }
