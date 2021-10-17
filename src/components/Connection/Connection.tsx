@@ -4,6 +4,7 @@ import Line from "../../data/classes/Line";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 import './Connection.css'
 import LineComponent from "../LineComponent/LineComponent";
+import {useHistory} from "react-router-dom";
 
 type propsType = {
     path: [
@@ -29,14 +30,21 @@ const Connection = (props:propsType) => {
     })
     lines.push(<LineComponent line={props.path[props.path.length - 1].line}/>)
 
-
+    const history = useHistory()
 
     const handleClickOnConnection = () => {
-
+        let connectionURL = "/connection/"
+        props.path.forEach((p,i) => {
+            connectionURL += `${p.line.name}-${p.station.id}-${p.time}`
+            if(i !== props.path.length - 1){
+                connectionURL += '-'
+            }
+        })
+        history.push(connectionURL);
     }
 
     return(
-        <div className="connection">
+        <div className="connection" onClick={handleClickOnConnection}>
             <div className="departure-time-div">{beginTime.hoursString()+":"+beginTime.minutesString()}</div>
             <i className="icon-right-thin"></i>
             <div className="arrive-time-div">{arriveTime.hoursString()+":"+arriveTime.minutesString()}</div>

@@ -1,5 +1,4 @@
 import Station from "../data/classes/Station";
-import WeekDate from "../data/classes/WeekDate";
 
 export const ADD_BEGIN_STATION = 'ADD_BEGIN_STATION'
 export const REMOVE_BEGIN_STATION = 'REMOVE_BEGIN_STATION'
