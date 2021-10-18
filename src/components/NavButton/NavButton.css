@@ -43,10 +43,12 @@
 
     .active-menu{
         right: 0;
+        z-index: 1000;
         transition: 0.25s;
     }
 
     .hidden-menu{
+        z-index: 0;
         right: -100%;
         transition: 0.25s;
     }

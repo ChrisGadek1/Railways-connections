@@ -1,11 +1,10 @@
-import React, {} from "react";
+import React from "react";
 import Station from "../../data/classes/Station";
 import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/rootReducer";
 import Line from "../../data/classes/Line";
 import WeekDateConverter from "../../services/WeekDateConverter/WeekDateConverter";
 import Graph from "../../data/classes/Graph";
-import OneConnectionDetails from "../OneConnectionDetails/OneConnectionDetails";
 import Connection from "../Connection/Connection";
 
 const ConnectionsWrapper = () => {
@@ -18,6 +17,7 @@ const ConnectionsWrapper = () => {
 
     const weekDateConverter = new WeekDateConverter()
     const paths = []
+
     if(departureTime !== null && beginStation !== null && endStation !== null){
         let currentTime = weekDateConverter.convertFromDate(departureTime);
         for(let i = 0; i < 3; i++){

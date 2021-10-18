@@ -25,7 +25,7 @@ const Connection = (props:propsType) => {
     let lines = []
     props.path.forEach((p, index) => {
         if(index > 0 && p.line.name !== props.path[index - 1].line.name){
-            lines.push(<LineComponent key={props.path[index - 1].line.name+"connection"+Math.random()} line={props.path[index - 1].line}/>)
+            lines.push(<LineComponent key={props.path[index - 1].line.name+"connection"+Math.random().toString()} line={props.path[index - 1].line}/>)
         }
     })
     lines.push(<LineComponent line={props.path[props.path.length - 1].line}/>)

@@ -20,7 +20,7 @@ export default class TrainTimeComputer{
         const departuresTime = line.time.map(time => {
             return weekDateConverter.convertToSeconds(time) + TrainTimeComputer.computeTimeBetweenStationsChain(stationToCurrentStation, speed)
         })
-        departuresTime.sort()
+        departuresTime.sort((a,b)=> a - b);
         const currentTimeInSeconds = weekDateConverter.convertToSeconds(currentTime)
         const biggerTime = departuresTime.find(time => time > currentTimeInSeconds);
         if(biggerTime === undefined){

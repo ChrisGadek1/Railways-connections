@@ -44,7 +44,6 @@ const ConnectionsDataChoosing = () => {
 
     const handleDateChange = (dateFromPicker: MaterialUiPickersDate) => {
         if(dateFromPicker !== null){
-            console.log(departureTime)
             dispatcher(removeDepartureTime())
             dispatcher(addDepartureTime(dateFromPicker));
         }

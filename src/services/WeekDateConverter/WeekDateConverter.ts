@@ -42,7 +42,7 @@ export default class WeekDateConverter{
         const seconds = date.getSeconds();
         const minutes = date.getMinutes();
         const hours = date.getHours();
-        const weekDay = (date.getDay() - 1) % 7;
+        const weekDay = (date.getDay() - 1) === -1 ? 6 : date.getDay() - 1;
         return new WeekDate(weekDay,hours,minutes,seconds);
     }
 

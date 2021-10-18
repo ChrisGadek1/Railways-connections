@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import { showAnimation, hideAnimation } from "../../actions/mobileAnimationActions";
 import NavButton from "../NavButton/NavButton";
 import './Nav.css'
+import {RootState} from "../../reducers/rootReducer";
 
 const options = [
     {name: 'Strona Główna', url: '/'},
@@ -16,6 +17,7 @@ const Nav = () => {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const dispatch = useDispatch();
+    const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 
     const buttons = options.map((option, id: number) =>
         <NavButton
@@ -47,7 +49,7 @@ const Nav = () => {
             </div>
             <header className={showMobileMenu ? "big-z-index" : "low-z-index"}>
                 <nav>
-                    <ul className="main-menu">
+                    <ul className={showMobileMenu ? "main-menu big-z-index" : "main-menu low-z-index"}>
                         {buttons}
                     </ul>
                 </nav>
