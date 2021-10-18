@@ -8,7 +8,8 @@ type propsType = {
         {
             station: Station,
             line: Line,
-            time: number
+            time: number,
+            reverse: boolean
         }
     ],
     colors: string[]
@@ -23,7 +24,7 @@ const OneConnectionDetails = (props: propsType) => {
         currentLines.push(props.path[i])
         if( i === props.path.length - 1 || props.path[i].line.name !== props.path[i + 1].line.name){
             //@ts-ignore
-            lines.push(<OneLineConnection line={props.path[i].line} key={props.path[i].line+Math.random()} color={colors[colorIndex++]} path={currentLines}/>)
+            lines.push(<OneLineConnection reverse={props.path[i].reverse} line={props.path[i].line} key={props.path[i].line+Math.random()} color={colors[colorIndex++]} path={currentLines}/>)
             currentLines = []
         }
     }

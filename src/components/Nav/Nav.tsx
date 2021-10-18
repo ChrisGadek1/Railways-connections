@@ -10,14 +10,13 @@ const options = [
     {name: 'Strona Główna', url: '/'},
     {name: 'Przystanki', url: '/przystanki'},
     {name: 'Połączenia', url: '/linie'},
-    {name: 'Znajdź trasę', url: '/znajdz-trase'}
+    {name: 'Znajdź Trasę', url: '/znajdz-trase'}
 ]
 
 const Nav = () => {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const dispatch = useDispatch();
-    const mobileAnimation = useSelector((store: RootState) => store.mobileAnimation)
 
     const buttons = options.map((option, id: number) =>
         <NavButton

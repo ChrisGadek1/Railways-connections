@@ -29,7 +29,8 @@ const ConnectionsWrapper = () => {
                 path: result.map(node => ({
                     station: node.station,
                     line: node.line,
-                    time: node.getTime()
+                    time: node.getTime(),
+                    reverse: node.reversed
                 }))
             }
             //@ts-ignore

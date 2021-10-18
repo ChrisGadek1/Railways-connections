@@ -14,7 +14,8 @@ type propsType = {
             station: Station,
             time: number
         }
-    ]
+    ],
+    reverse: boolean
 }
 
 const OneLineConnection = (props:propsType) => {
@@ -25,6 +26,7 @@ const OneLineConnection = (props:propsType) => {
     return(
         <div className="one-line-connection" style={{backgroundColor: props.color}}>
             <div>
+                <p>Kierunek: {props.reverse ? props.line.begin.name : props.line.end.name}</p>
                 <LineComponent line={props.line}/>
             </div>
             <div className="one-line-connection-inner">

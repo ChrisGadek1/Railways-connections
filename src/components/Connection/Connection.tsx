@@ -11,7 +11,8 @@ type propsType = {
         {
             station: Station,
             line: Line,
-            time: number
+            time: number,
+            reverse: boolean
         }
     ]
 }
@@ -35,7 +36,7 @@ const Connection = (props:propsType) => {
     const handleClickOnConnection = () => {
         let connectionURL = "/connection/"
         props.path.forEach((p,i) => {
-            connectionURL += `${p.line.name}-${p.station.id}-${p.time}`
+            connectionURL += `${p.line.name}-${p.station.id}-${p.time}-${p.reverse}`
             if(i !== props.path.length - 1){
                 connectionURL += '-'
             }

@@ -13,7 +13,8 @@ type propsType = {
         {
             station: Station,
             line: Line,
-            time: number
+            time: number,
+            reverse: boolean
         }
     ]
 }
@@ -25,14 +26,16 @@ const ConnectionDetails = () => {
     const linesFromState: Line[] = useSelector((state: RootState) => state.data.data.lines);
     const stringDataFromParams = stations.split("-");
     const path = []
-    for(let i = 0; i < stringDataFromParams.length - 2; i+=3){
+    for(let i = 0; i < stringDataFromParams.length - 3; i+=4){
         const lineName = stringDataFromParams[i]
         const stationID = stringDataFromParams[i + 1]
         const time = parseInt(stringDataFromParams[i + 2])
+        const reverse = stringDataFromParams[i + 3] === "false" ? false : true
         path.push({
             station: stationsFromState.find(station => station.id.toString() === stationID),
             line: linesFromState.find(line => line.name === lineName),
-            time: time
+            time: time,
+            reverse
         })
     }
 
