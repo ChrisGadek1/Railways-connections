@@ -12,7 +12,10 @@ const initialState = {
     selectedLines: [],
     beginStation: null,
     endStation: null,
-    departureTime: null
+    departureTime: null,
+    paths: [],
+    maxPaths: 3,
+    nextConnectionTime: null
 
 }
 export default initialState;

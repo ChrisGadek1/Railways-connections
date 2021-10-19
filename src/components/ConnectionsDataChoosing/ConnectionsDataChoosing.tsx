@@ -14,6 +14,7 @@ import {DatePicker, MuiPickersUtilsProvider, TimePicker} from "@material-ui/pick
 import DateFnsUtils from '@date-io/date-fns';
 import {pl} from 'date-fns/locale'
 import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
+import {removeALLPaths, resetMaxPaths, resetNextConnectionTime} from "../../actions/pathsActions";
 
 
 
@@ -40,12 +41,18 @@ const ConnectionsDataChoosing = () => {
         dispatcher(removeEndStation());
         dispatcher(addBeginStation(endStation));
         dispatcher(addEndStation(beginStation));
+        dispatcher(removeALLPaths())
+        dispatcher(resetMaxPaths())
+        dispatcher(resetNextConnectionTime())
     }
 
     const handleDateChange = (dateFromPicker: MaterialUiPickersDate) => {
         if(dateFromPicker !== null){
             dispatcher(removeDepartureTime())
             dispatcher(addDepartureTime(dateFromPicker));
+            dispatcher(removeALLPaths())
+            dispatcher(resetMaxPaths())
+            dispatcher(resetNextConnectionTime())
         }
 
     }

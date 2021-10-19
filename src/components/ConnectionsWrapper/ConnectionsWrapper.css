@@ -1,0 +1,17 @@
+.load-more-button-wrapper{
+    width: max-content;
+    margin: 30px auto 20px auto;
+}
+
+.load-more-button{
+    padding: 15px 20px;
+    font-size: 20px;
+    background-color: #cccccc;
+    transition: 0.2s;
+}
+
+.load-more-button:hover{
+    cursor: pointer;
+    background-color: #bbbbbb;
+    transition: 0.2s;
+}
