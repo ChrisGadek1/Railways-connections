@@ -14,7 +14,7 @@ function App() {
     return (
             <Provider store={store}>
                 <div className="App" data-testid="app">
-                    <BrowserRouter>
+                    <BrowserRouter basename={process.env.PUBLIC_URL}>
                         <Nav/>
                         <Content/>
                         <PopupWrapper />

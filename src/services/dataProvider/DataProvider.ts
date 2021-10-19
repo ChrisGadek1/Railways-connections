@@ -32,7 +32,7 @@ export default class DataProvider{
     }
 
     public fetchData(){
-        return axios.all([axios.get('/jsons/stations.json'), axios.get('/jsons/lines.json')]).then((responses) => {
+        return axios.all([axios.get(process.env.PUBLIC_URL+ '/jsons/stations.json'), axios.get(process.env.PUBLIC_URL+'/jsons/lines.json')]).then((responses) => {
             const {data: {stations}}:StationJson = responses[0];
             const {data: {lines, speed} }:LinesJson = responses[1];
             DataProvider.instance._stations = stations.map(station => {
