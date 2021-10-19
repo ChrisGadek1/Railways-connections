@@ -15,6 +15,7 @@ import {
 } from "../../actions/pathsActions";
 import './ConnectionsWrapper.css'
 import WeekDate from "../../data/classes/WeekDate";
+import $ from 'jquery'
 
 const ConnectionsWrapper = () => {
 
@@ -34,10 +35,18 @@ const ConnectionsWrapper = () => {
     const weekDateConverter = new WeekDateConverter()
 
     useEffect(() => {
+        $(window).scroll(function() {
+            // @ts-ignore
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                dispatcher(increaseMaxPaths(3));
+                handleLoadMore()
+            }
+        });
         return () => {
             dispatcher(removeALLPaths())
             dispatcher(resetMaxPaths())
             dispatcher(resetNextConnectionTime())
+            $(window).off("scroll")
         };
     }, []);
 
