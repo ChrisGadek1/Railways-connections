@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Railways-connections/static/css/main.5ba23c4a.chunk.css",
-    "main.js": "/Railways-connections/static/js/main.280f1182.chunk.js",
-    "main.js.map": "/Railways-connections/static/js/main.280f1182.chunk.js.map",
+    "main.js": "/Railways-connections/static/js/main.ab99cda7.chunk.js",
+    "main.js.map": "/Railways-connections/static/js/main.ab99cda7.chunk.js.map",
     "runtime-main.js": "/Railways-connections/static/js/runtime-main.bfa16365.js",
     "runtime-main.js.map": "/Railways-connections/static/js/runtime-main.bfa16365.js.map",
     "static/js/2.47b727e2.chunk.js": "/Railways-connections/static/js/2.47b727e2.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bfa16365.js",
     "static/js/2.47b727e2.chunk.js",
     "static/css/main.5ba23c4a.chunk.css",
-    "static/js/main.280f1182.chunk.js"
+    "static/js/main.ab99cda7.chunk.js"
   ]
 }
