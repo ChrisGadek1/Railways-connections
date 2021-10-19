@@ -70,7 +70,7 @@ const ConnectionsWrapper = () => {
                     }))
                 }
                 //@ts-ignore
-                dispatcher(addPath(<Connection key={i+"path"} path={path.path}/>))
+                dispatcher(addPath(<Connection key={i+"path"+Math.random()} path={path.path}/>))
                 nextConnectionTime = weekDateConverter.convert(path.path[0].time)
                 dispatcher(addNextConnectionTime(weekDateConverter.convert(path.path[0].time)))
             }
