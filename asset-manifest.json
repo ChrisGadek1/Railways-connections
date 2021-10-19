@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Railways-connections/static/css/main.5ba23c4a.chunk.css",
+    "main.js": "/Railways-connections/static/js/main.47856dbf.chunk.js",
+    "main.js.map": "/Railways-connections/static/js/main.47856dbf.chunk.js.map",
+    "runtime-main.js": "/Railways-connections/static/js/runtime-main.bfa16365.js",
+    "runtime-main.js.map": "/Railways-connections/static/js/runtime-main.bfa16365.js.map",
+    "static/js/2.47b727e2.chunk.js": "/Railways-connections/static/js/2.47b727e2.chunk.js",
+    "static/js/2.47b727e2.chunk.js.map": "/Railways-connections/static/js/2.47b727e2.chunk.js.map",
+    "static/js/3.3dafc80b.chunk.js": "/Railways-connections/static/js/3.3dafc80b.chunk.js",
+    "static/js/3.3dafc80b.chunk.js.map": "/Railways-connections/static/js/3.3dafc80b.chunk.js.map",
+    "index.html": "/Railways-connections/index.html",
+    "static/css/main.5ba23c4a.chunk.css.map": "/Railways-connections/static/css/main.5ba23c4a.chunk.css.map",
+    "static/js/2.47b727e2.chunk.js.LICENSE.txt": "/Railways-connections/static/js/2.47b727e2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bfa16365.js",
+    "static/js/2.47b727e2.chunk.js",
+    "static/css/main.5ba23c4a.chunk.css",
+    "static/js/main.47856dbf.chunk.js"
+  ]
+}
