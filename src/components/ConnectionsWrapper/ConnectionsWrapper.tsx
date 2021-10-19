@@ -76,7 +76,6 @@ const ConnectionsWrapper = () => {
             }
         }
     }
-
     handleLoadMore()
 
     const handleClick = () => {

@@ -39,11 +39,6 @@ const ConnectionDetails = () => {
         })
     }
 
-    const propsFromParams: propsType = ({
-        //@ts-ignore
-        path: path
-    })
-
     return(
         <div className="connection-details">
             {/*@ts-ignore*/}
