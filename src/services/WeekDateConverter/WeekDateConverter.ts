@@ -42,8 +42,19 @@ export default class WeekDateConverter{
         const seconds = date.getSeconds();
         const minutes = date.getMinutes();
         const hours = date.getHours();
-        const weekDay = (date.getDay() - 1) % 7;
+        const weekDay = (date.getDay() - 1) === -1 ? 6 : date.getDay() - 1;
         return new WeekDate(weekDay,hours,minutes,seconds);
+    }
+
+    addToTheDate(date: Date, weekDate: WeekDate){
+        const currentTime = this.convertFromDate(date).convertToSeconds()
+        console.log(currentTime)
+        console.log(weekDate.convertToSeconds())
+        let movement = weekDate.convertToSeconds() - currentTime
+        if(movement < 0){
+            movement *= -1
+        }
+        return new Date(date.getTime() + movement*1000)
     }
 
     convertToSeconds(weekDate: WeekDate|undefined){

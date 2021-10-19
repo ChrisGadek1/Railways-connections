@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import { showAnimation, hideAnimation } from "../../actions/mobileAnimationActions";
 import NavButton from "../NavButton/NavButton";
 import './Nav.css'
+import {RootState} from "../../reducers/rootReducer";
 
 const options = [
     {name: 'Strona Główna', url: '/'},
     {name: 'Przystanki', url: '/przystanki'},
     {name: 'Połączenia', url: '/linie'},
-    {name: 'Znajdź trasę', url: '/znajdz-trase'}
+    {name: 'Znajdź Trasę', url: '/znajdz-trase'}
 ]
 
 const Nav = () => {
@@ -47,7 +48,7 @@ const Nav = () => {
             </div>
             <header className={showMobileMenu ? "big-z-index" : "low-z-index"}>
                 <nav>
-                    <ul className="main-menu">
+                    <ul className={showMobileMenu ? "main-menu big-z-index" : "main-menu low-z-index"}>
                         {buttons}
                     </ul>
                 </nav>

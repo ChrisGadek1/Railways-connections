@@ -35,6 +35,14 @@ const testData = [
         reversed: true,
         speed: 20,
         nextTrainTime: 5400
+    },
+    {
+        currentTime: 300,
+        stationID: 1,
+        lineName: 'XML',
+        reversed: false,
+        speed: 20,
+        nextTrainTime: 6000
     }
 ]
 

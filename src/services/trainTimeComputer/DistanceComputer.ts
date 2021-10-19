@@ -13,8 +13,8 @@ export class DistanceComputer{
             Math.cos(this.degreesToRadians(point1.lat))*
             Math.cos(this.degreesToRadians(point2.lat))*
             Math.cos(this.degreesToRadians(point1.lon - point2.lon))
-        )*planetR)
-        return result
+        )*planetR);
+        return result;
     }
 
     private static degreesToRadians(degrees:number){

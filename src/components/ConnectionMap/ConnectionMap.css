@@ -1,0 +1,16 @@
+#mapdiv-connection{
+    margin: 20px auto 20px auto;
+    max-height: 60vh;
+}
+
+@media (max-width: 899px) {
+    #mapdiv-connection{
+        width: 95vw;
+    }
+}
+
+@media (min-width: 900px){
+    #mapdiv-connection{
+        width: 80vw;
+    }
+}

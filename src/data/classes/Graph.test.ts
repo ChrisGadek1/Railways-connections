@@ -127,8 +127,8 @@ it("creates valid graph based on three lines", async () => {
 
 const testConnections = [
     {
-        beginStation: "Jaroszowiec",
-        endStation: "Zawada",
+        beginStation: "Sieniczno",
+        endStation: "Osiek Północny",
         time: 123456,
         path: [
             {
